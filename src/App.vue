@@ -7,14 +7,12 @@
 </template>
 
 <script>
-//import HelloWorld from './components/HelloWorld.vue'
-//import LoginUsuario from './components/LoginUsuario.vue'
+
 
 export default {
   name: 'App',
   components: {
-    //HelloWorld
-    //LoginUsuario
+    
   }
 }
 </script>

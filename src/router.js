@@ -12,32 +12,15 @@ export default new VueRouter({
     mode: "history",
     routes: [
         {
-           // name: 'PessoasInicio',
+           
             path: '/helloWorld',
             component: HelloWorld,
         },
         {
-           // name: 'LoginUsuario',
+           
             path: '/',
             component: LoginUsuario,
         },
     ]
   })
 
-/* const routes = [
-    // paginas iniciais
-    {
-        name: 'PessoasInicio',
-        path: '/pessoasInicio',
-        component: PessoasInicio,
-    },
-    {
-        name: 'LoginUsuario',
-        path: '/LoginUsuario',
-        component: LoginUsuario,
-    },
-   
-] */
-
-  
-//export default router 
