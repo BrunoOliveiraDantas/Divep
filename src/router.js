@@ -1,18 +1,43 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
 
-import PessoasInicio from '@/pages/PessoasInicio'
+
+import HelloWorld from './components/HelloWorld'
+import LoginUsuario from './components/LoginUsuario'
 
 
 Vue.use(VueRouter)
 
-const routes = [
+export default new VueRouter({
+    mode: "history",
+    routes: [
+        {
+           // name: 'PessoasInicio',
+            path: '/helloWorld',
+            component: HelloWorld,
+        },
+        {
+           // name: 'LoginUsuario',
+            path: '/',
+            component: LoginUsuario,
+        },
+    ]
+  })
+
+/* const routes = [
     // paginas iniciais
     {
         name: 'PessoasInicio',
-        path: '/PessoasInicio',
+        path: '/pessoasInicio',
         component: PessoasInicio,
     },
+    {
+        name: 'LoginUsuario',
+        path: '/LoginUsuario',
+        component: LoginUsuario,
+    },
    
-]
-export default router 
+] */
+
+  
+//export default router 

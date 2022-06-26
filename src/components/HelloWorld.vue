@@ -51,8 +51,9 @@
                 </div>
 
                 <div class="col-lg-3">
+            
                     <div class="container-buttons container-buttons--colunas">
-                        <button>Botão</button>
+                        <button >Botão</button>
                         <button>Botão</button>
                     </div>
                 </div>
@@ -458,3 +459,21 @@
         /* Tabela */
 
     </style>
+
+    <script>
+//import HelloWorld from './components/HelloWorld.vue'
+
+export default {
+ data(){
+
+ },
+ methods:{
+ 
+  },
+
+ 
+ }
+
+</script>
+
+<style>
