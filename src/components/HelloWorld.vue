@@ -13,11 +13,11 @@
 
             <div class="collapse navbar-collapse flex-row-reverse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <!-- <li class="nav-item active">
                         <a class="nav-link nav-link--inicio" href="#">Início</a>
-                    </li>
+                    </li> -->
 
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link nav-link--pessoas" href="#">Pessoas</a>
                     </li>
 
