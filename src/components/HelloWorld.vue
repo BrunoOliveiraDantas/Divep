@@ -112,7 +112,7 @@
                         <thead>
                             <tr>
                                 <th>Exercício</th>
-                                <th>Períodoader</th>
+                                <th>Período</th>
                                 <th>Dias</th>
                             </tr>
                         </thead>
