@@ -106,14 +106,14 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="card">
-                    <h2 class="card__titulo">Titulo</h2>
+                    <h2 class="card__titulo">Férias</h2>
 
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Header</th>
-                                <th>Header</th>
-                                <th>Header</th>
+                                <th>Exercício</th>
+                                <th>Períodoader</th>
+                                <th>Dias</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -122,92 +122,54 @@
                                 <td>Cell</td>
                                 <td>Cell</td>
                             </tr>
-                            <tr>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                            </tr>
-                            <tr>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                            </tr>
-                            <tr>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                            </tr>
-                            <tr>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                            </tr>
+                           
                         </tbody>
                     </table>
 
                     <div class="container-buttons">
-                        <button>Botão</button>
+                        <button>Incluir</button>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-4">
                 <div class="card">
-                    <h2 class="card__titulo">Titulo</h2>
+                    <h2 class="card__titulo">Abonos</h2>
 
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Header</th>
-                                <th>Header</th>
-                                <th>Header</th>
+                                <th>Data</th>
+                                <!--<th>Header</th>
+                                <th>Header</th> -->
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
+                                <!-- <td>Cell</td>
+                                <td>Cell</td>-->
                             </tr>
-                            <tr>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                            </tr>
-                            <tr>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                            </tr>
-                            <tr>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                            </tr>
-                            <tr>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                            </tr>
+                           
                         </tbody>
                     </table>
 
                     <div class="container-buttons">
-                        <button>Botão</button>
+                        <button>Incluir</button>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-4">
                 <div class="card">
-                    <h2 class="card__titulo">Titulo</h2>
+                    <h2 class="card__titulo">Licenças/Afastamento</h2>
 
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Header</th>
-                                <th>Header</th>
-                                <th>Header</th>
+                                <th>Tipo</th>
+                                <th>Período</th>
+                                <th>Dias</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -216,31 +178,12 @@
                                 <td>Cell</td>
                                 <td>Cell</td>
                             </tr>
-                            <tr>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                            </tr>
-                            <tr>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                            </tr>
-                            <tr>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                            </tr>
-                            <tr>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                            </tr>
+                           
                         </tbody>
                     </table>
 
                     <div class="container-buttons">
-                        <button>Botão</button>
+                        <button>Incluir</button>
                     </div>
                 </div>
             </div>
@@ -250,16 +193,16 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <h2 class="card__titulo">Título</h2>
+                    <h2 class="card__titulo">Relação de Servidores</h2>
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Header</th>
-                                <th>Header</th>
-                                <th>Header</th>
-                                <th>Header</th>
-                                <th>Header</th>
-                                <th>Header</th>
+                                <th>N⌂</th>
+                                <th>Matrícula</th>
+                                <th>Nome do Servidor</th>
+                                <th>Setor</th>
+                                <th>Lotação</th>
+                                <th>Atividade</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -271,38 +214,8 @@
                                 <td>Cell</td>
                                 <td>Cell</td>
                             </tr>
-                            <tr>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                            </tr>
-                            <tr>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                            </tr>
-                            <tr>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                            </tr>
-                            <tr>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                            </tr>
+                           
+                                
                         </tbody>
                     </table>
                 </div>
