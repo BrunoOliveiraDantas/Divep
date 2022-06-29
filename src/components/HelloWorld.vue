@@ -240,7 +240,7 @@ export default {
             sortable: true
           },
           {
-            key: 'Abono',
+            key: 'ABONO',
             sortable: false
           },
           {
