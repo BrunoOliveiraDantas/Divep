@@ -104,6 +104,7 @@
 
         <!-- Primeira parte -->
         <div class="row">
+       <b-table striped hover :items="items" :fields="fields"></b-table>
             <div class="col-lg-4">
                 <div class="card">
                     <h2 class="card__titulo">Férias</h2>
@@ -232,6 +233,30 @@
 export default {
     data() {
         return {
+
+         fields: [
+          {
+            key: 'Férias',
+            sortable: true
+          },
+          {
+            key: 'Abono',
+            sortable: false
+          },
+          {
+            key: 'age',
+            label: 'Licença/Afastamento',
+            sortable: true,
+            // Variant applies to the whole column, including the header and footer
+            //variant: 'danger'
+          }
+        ],
+        items: [
+          { isActive: true, age: 40, Férias: 'Dickerson', Abono: 'Macdonald' },
+          { isActive: false, age: 21, Férias: 'Larsen', Abono: 'Shaw' },
+          { isActive: false, age: 89, Férias: 'Geneva', Abono: 'Wilson' },
+          { isActive: true, age: 38, Férias: 'Jami', Abono: 'Carney' }
+        ]
            
         }
     },

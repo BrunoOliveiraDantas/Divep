@@ -6,6 +6,7 @@ import HelloWorld from './components/HelloWorld'
 import LoginUsuario from './components/LoginUsuario'
 
 
+
 Vue.use(VueRouter)
 
 export default new VueRouter({
@@ -21,6 +22,7 @@ export default new VueRouter({
             path: '/',
             component: LoginUsuario,
         },
+      
     ]
   })
 
