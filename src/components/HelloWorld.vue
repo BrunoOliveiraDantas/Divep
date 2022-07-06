@@ -34,7 +34,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link nav-link--sair" href="#">Sair</a>
+                        <a class="nav-link nav-link--sair" href="localhost:8080">Sair</a>
                     </li>
                 </ul>
             </div>
@@ -128,7 +128,7 @@
                     </table>
 
                     <div class="container-buttons">
-                        <button>Incluir</button>
+                        <button type="button" @click="incluirFeriasServidor">Incluir</button>
                     </div>
                 </div>
             </div>
@@ -156,14 +156,14 @@
                     </table>
 
                     <div class="container-buttons">
-                        <button>Incluir</button>
+                        <button type="button" @click="incluirAbonoServidor">Incluir</button>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-4">
                 <div class="card">
-                    <h2 class="card__titulo">Licenças/Afastamento</h2>
+                    <h2 class="card__titulo">Licenças/Afastamentokkk</h2>
 
                     <table class="table table-striped">
                         <thead>
@@ -261,6 +261,20 @@ export default {
         }
     },
     methods: {
+        incluirFeriasServidor(){
+        this.$router.push({
+          path: "ferias",
+          params: { parametros: "" },
+        });
+        },
+
+        incluirAbonoServidor(){
+             this.$router.push({
+          path: "abono",
+          params: { parametros: "" },
+        });
+        },
+       
 
     },
 

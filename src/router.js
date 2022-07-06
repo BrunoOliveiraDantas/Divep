@@ -5,6 +5,7 @@ import VueRouter from "vue-router"
 import HelloWorld from './components/HelloWorld'
 import LoginUsuario from './components/LoginUsuario'
 import FeriasServidor from './components/FeriasServidor'
+import AbonoServidor from './components/AbonoServidor'
 
 
 Vue.use(VueRouter)
@@ -23,6 +24,10 @@ export default new VueRouter({
         {
             path: '/ferias',
             component: FeriasServidor,
+        },
+        {
+            path:'/abono',
+            component: AbonoServidor
         },
       
     ]
