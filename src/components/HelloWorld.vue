@@ -30,7 +30,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link nav-link--novo" href="#">Novo</a>
+                        <a class="nav-link nav-link--novo" @click="incluirDadosPessoais">Novo</a>
                     </li>
 
                     <li class="nav-item">
@@ -271,6 +271,12 @@ export default {
         incluirAbonoServidor(){
              this.$router.push({
           path: "abono",
+          params: { parametros: "" },
+        });
+        },
+          incluirDadosPessoais(){
+             this.$router.push({
+          path: "DadosPessoais",
           params: { parametros: "" },
         });
         },

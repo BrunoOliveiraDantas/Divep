@@ -6,6 +6,7 @@ import HelloWorld from './components/HelloWorld'
 import LoginUsuario from './components/LoginUsuario'
 import FeriasServidor from './components/FeriasServidor'
 import AbonoServidor from './components/AbonoServidor'
+import DadosPessoais from './components/DadosPessoais'
 
 
 Vue.use(VueRouter)
@@ -28,6 +29,10 @@ export default new VueRouter({
         {
             path:'/abono',
             component: AbonoServidor
+        },
+        {
+            path:'/dadosPessoais',
+            component: DadosPessoais
         },
       
     ]
