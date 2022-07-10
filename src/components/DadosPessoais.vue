@@ -41,12 +41,12 @@
     </nav>
 
     <form class="row g-2">
-      <div class=" col-sm-6 col-md-6 ">
-        <label for="nome">Nome do Servidor</label>
-        <input type="text" class="form-control" id="nome" placeholder="Digite o nome" aria-describedby="input-live-help input-live-feedback">
+      <div class=" col-md-6 ">
+        <label for="nome" class="form-label">Nome do Servidor</label>
+        <input type="text" class="form-control" id="nome" >
       </div>
-      <div class=" col-sm-6 col-md-6 ">
-        <label for="apelido">Apelido</label>
+      <div class=" col-md-6 ">
+        <label for="apelido" class="form-label">Apelido</label>
         <input type="text" class="form-control" id="apelido">
       </div>
       <div class="col-md-6 ">
