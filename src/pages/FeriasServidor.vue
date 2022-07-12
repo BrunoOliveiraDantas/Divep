@@ -8,7 +8,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div role="group">
-                                <label for="input-live">Ano de exercicio::</label>
+                                <label for="input-live">Ano de exercicio:</label>
                                 <b-form-select class="mb-3 input-select">
                                     <b-form-select-option value="C">2021</b-form-select-option>
                                     <b-form-select-option value="D">2022</b-form-select-option>
@@ -48,7 +48,10 @@
                 <div class="col-lg-3">
 
                     <div class="container-buttons-salvar">
-                        <button>Salvar</button>
+                        <button @click="salvarFerias">Salvar</button>
+                    </div>
+                    <div class="container-buttons-salvar">
+                        <router-link to="/inicio"><button>Voltar</button></router-link>
                     </div>
                 </div>
             </div>
@@ -72,9 +75,13 @@
 
 <script>
 
+import {feriasService} from "@/service/feriasService";
+
 export default {
     data() {
         return {
+
+            ferias: [],
 
             fields: [
                 {
@@ -101,6 +108,33 @@ export default {
         }
     },
     methods: {
+        salvarFerias() {
+            console.log("CAI NO SALVAR")
+            feriasService.salvarFerias().then((res) => {
+                this.ferias = res;
+                console.log("Resposta do Salvar", this.ferias)
+                let itemFerias = [];
+                for (let index = 0; index < this.ferias.length; index++) {
+                    console.log("Entrei no for", itemFerias)
+                    console.log("Item ferias",  itemFerias[index].isActive)
+                    itemFerias[index].isActive = "true";
+                    itemFerias[index].Dias = this.ferias[index].dias;
+                    itemFerias[index].Período = ` ${this.ferias[index].dataInicio} a ${this.ferias[index].dataFim}`;
+                    itemFerias[index].Exercicio = this.ferias[index].exercicio;
+
+                    this.items.push(itemFerias[index]);
+                    console.log("Entrei no for", itemFerias)
+                }
+
+            })
+                .catch(erro => {
+                    console.log(erro);
+                })
+                .finally(() => {
+
+                });
+
+        },
 
     },
 

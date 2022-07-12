@@ -75,6 +75,7 @@
                                 <th>Exercício</th>
                                 <th>Período</th>
                                 <th>Dias</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -82,6 +83,9 @@
                                 <td>Cell</td>
                                 <td>Cell</td>
                                 <td>Cell</td>
+                                <td><div>
+                        <button type="button">Ação</button>
+                    </div></td>
                             </tr>
 
                         </tbody>
@@ -215,7 +219,6 @@ export default {
                 params: { parametros: "" },
             });
         },
-
 
     },
 
