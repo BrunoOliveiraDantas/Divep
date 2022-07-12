@@ -1,12 +1,10 @@
 <template>
 
-  <div class="container1 col-md-12">
+  <div class="container-login col-md-12">
 
     <div class="card-login col-md-3 mt-5">
       <div class="row">
         <div class="col-12">
-
-
           <h1 class="h3 mb-3 font-weight-normal">Login</h1>
           <label for="inputEmail" class="sr-only">Matricula</label>
           <input type="email" id="inputEmail" class="form-control" placeholder="Informe a Matrícula" required=""
@@ -64,7 +62,7 @@ export default {
 
         };
         this.$router.push({
-          path: "helloWorld",
+          path: "inicio",
           params: { parametros: parametros },
         });
 
@@ -79,23 +77,3 @@ export default {
 
 }
 </script>
-
-
-<style type="text/css">
-.container1 {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  
-
-}
-
-/* Card */
-.card-login {
-  border: 1px solid #FFFFFF;
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
-  padding: 1rem;
-  margin: 0 auto;
-}
-</style>

@@ -2,11 +2,11 @@ import Vue from "vue"
 import VueRouter from "vue-router"
 
 
-import HelloWorld from './components/HelloWorld'
-import LoginUsuario from './components/LoginUsuario'
-import FeriasServidor from './components/FeriasServidor'
-import AbonoServidor from './components/AbonoServidor'
-import DadosPessoais from './components/DadosPessoais'
+import Inicio from '@/pages/Inicio'
+import LoginUsuario from '@/pages/LoginUsuario'
+import FeriasServidor from '@/pages/FeriasServidor'
+import AbonoServidor from '@/pages/AbonoServidor'
+import DadosPessoais from '@/pages/DadosPessoais'
 
 
 Vue.use(VueRouter)
@@ -15,8 +15,8 @@ export default new VueRouter({
     mode: "history",
     routes: [
         {
-            path: '/helloWorld',
-            component: HelloWorld,
+            path: '/inicio',
+            component: Inicio,
         },
         {
             path: '/',

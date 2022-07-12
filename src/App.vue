@@ -1,28 +1,26 @@
 <template>
   <div id="app">
-   
-    <router-view></router-view>
-   
+
+    <Header />
+    <Content />
+
   </div>
 </template>
 
 <script>
 
+import Content from './partials/template/Content.vue';
+import Header from './partials/template/Header.vue';
 
 export default {
   name: 'App',
   components: {
-    
+    Content,
+    Header
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+@import "@/assets/css/divep-css-global.css";
 </style>

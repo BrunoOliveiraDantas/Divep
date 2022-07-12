@@ -1,49 +1,9 @@
 <template>
   <div class="container">
-
-    <!-- Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand" href="#">
-        <h1>DIVEP</h1>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse flex-row-reverse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <!-- <li class="nav-item active">
-                  <a class="nav-link nav-link--inicio" href="#">Início</a>
-              </li> -->
-
-          <li class="nav-item active">
-            <a class="nav-link nav-link--pessoas" href="#">Pessoas</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link nav-link--financeiro" href="#">Financeiro</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link nav-link--vacinacao" href="#">Vacinação</a>
-          </li>
-
-          <!-- <li class="nav-item">
-                  <a class="nav-link nav-link--novo" href="#">Novo</a>
-              </li> -->
-
-          <li class="nav-item">
-            <a class="nav-link nav-link--sair" href="#">Sair</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
     <form class="row g-2">
       <div class=" col-md-6 ">
         <label for="nome" class="form-label">Nome do Servidor</label>
-        <input type="text" class="form-control" id="nome" >
+        <input type="text" class="form-control" id="nome">
       </div>
       <div class=" col-md-6 ">
         <label for="apelido" class="form-label">Apelido</label>
@@ -81,7 +41,7 @@
               Feminino
             </label>
           </div>
-         
+
         </div>
       </fieldset>
       <fieldset class="row mb-3">
@@ -290,9 +250,5 @@
 
 </script>
 
-<style type="text/css">
-  
-  
-</style>
 
 
