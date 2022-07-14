@@ -6,8 +6,8 @@
             <div class="row">
                 <div class="col-lg-3">
                     <b-col>
-      <b-img thumbnail fluid src="https://picsum.photos/250/250/?image=54" alt="Image 1"></b-img>
-    </b-col>
+                        <b-img thumbnail fluid src="https://picsum.photos/250/250/?image=54" alt="Image 1"></b-img>
+                    </b-col>
                 </div>
                 <div class="col-lg-6">
 
@@ -38,11 +38,12 @@
                             </div>
                         </div>
                         <div class="col-lg-3">
-                        <div role="group">
+                            <div role="group">
                                 <label for="input-live">Processo SEI:</label>
                                 <b-form-input id="input-live" aria-describedby="input-live-help input-live-feedback"
                                     placeholder="Informe o Processo" trim></b-form-input>
-                            </div></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
@@ -60,7 +61,7 @@
                                     <b-form-select-option value="D">Opção 2</b-form-select-option>
                                 </b-form-select>
                             </div>
-                            
+
                         </div>
                         <div class="col-lg-4">
                             <div role="group">
@@ -68,13 +69,14 @@
                                 <b-form-input id="input-live" aria-describedby="input-live-help input-live-feedback"
                                     placeholder="Informe a url" trim></b-form-input>
                             </div>
-                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-lg-3">
 
                     <div class="container-buttons container-buttons--colunas">
+                        <button>Pesquisar</button>
                         <button>Atualizar Dados</button>
                         <button>Restaurar Senha</button>
                     </div>
@@ -87,9 +89,9 @@
             <div class="col-lg-4">
                 <div class="card">
                     <h2 class="card__titulo">Férias</h2>
-                    
+
                     <table class="table table-striped">
-                        
+
                         <thead>
                             <tr>
                                 <th>Exercício</th>
@@ -99,10 +101,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="ferias in itemsFerias" :key="ferias">
-                                <td>{{ferias.Exercicio}}</td>
-                                <td>{{ferias.Período}}</td>
-                                <td>{{ferias.Dias}}</td>
+                            <tr v-for="ferias in itemsFerias" :key="ferias.Dias">
+                                <td>{{ ferias.Exercicio }}</td>
+                                <td>{{ ferias.Período }}</td>
+                                <td>{{ ferias.Dias }}</td>
                                 <td>
                                     <div>
                                         <button type="button">Ação</button>
@@ -111,8 +113,8 @@
                             </tr>
 
                         </tbody>
-                       
-                    </table> 
+
+                    </table>
 
                     <div class="container-buttons">
                         <button type="button" @click="incluirFeriasServidor">Incluir</button>
@@ -133,10 +135,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Cell</td>
-                                <!-- <td>Cell</td>
-                                <td>Cell</td>-->
+                            <tr v-for="abono in itemsAbono" :key="abono.id">
+                                <td>{{abono.Período}}</td>
                             </tr>
 
                         </tbody>
@@ -235,27 +235,32 @@
 export default {
     data() {
         return {
-            fieldsFerias: [
-                {
-                    key: 'Exercicio',
-                    sortable: false
-                },
-                {
-                    key: 'Período',
-                    sortable: false
-                },
-                {
-                    key: 'Dias',
-                    sortable: false,
-                }, {
-                    key: 'Ações',
-                }
-            ],
+            /*            fieldsFerias: [
+                           {
+                               key: 'Exercicio',
+                               sortable: false
+                           },
+                           {
+                               key: 'Período',
+                               sortable: false
+                           },
+                           {
+                               key: 'Dias',
+                               sortable: false,
+                           }, {
+                               key: 'Ações',
+                           }
+                       ], */
             itemsFerias: [
-                { isActive: true, Dias: "30", Período: '01/01/2018' + ' a ' + "01/02/2018", Exercicio: '2018'},
+                { isActive: true, Dias: "30", Período: '01/01/2018' + ' a ' + "01/02/2018", Exercicio: '2018' },
                 { isActive: false, Dias: "05", Período: '10/03/2019' + ' a ' + "15/03/2019", Exercicio: '2019' },
                 { isActive: false, Dias: "01", Período: '06/01/2022' + ' a ' + "06/01/2022", Exercicio: '2022' }
-            ]
+            ],
+            itemsAbono: [
+                { Período: '01/01/2022' + ' a ' + "01/02/2022"/* , isActive: false, ID: "2506" */ },
+                { Período: '10/03/2022' + ' a ' + "15/03/2022"/* , isActive: false, ID: "2504" */ },
+                { Período: '06/01/2022' + ' a ' + "06/01/2022"/* , isActive: false, ID: "246" */ }
+            ],
         }
     },
     methods: {
@@ -278,15 +283,18 @@ export default {
                 params: { parametros: "" },
             });
         },
-        verificaLocalStore(){
-            if(localStorage.getItem("ferias")){
+        verificaLocalStore() {
+            if (localStorage.getItem("ferias")) {
                 this.itemsFerias = JSON.parse(localStorage.getItem("ferias"));
+            }
+            if (localStorage.getItem("abono")) {
+                this.itemsAbono = JSON.parse(localStorage.getItem("abono"));
             }
         }
 
     },
 
-    mounted(){
+    mounted() {
         this.verificaLocalStore();
     }
 

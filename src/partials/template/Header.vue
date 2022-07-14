@@ -27,7 +27,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link nav-link--novo">Novo</a>
+                        <a class="nav-link nav-link--novo" @click="novoCadastro">Novo</a>
                     </li>
 
                     <li class="nav-item">
@@ -46,6 +46,12 @@ methods: {
         localStorage.clear();
 
     },
+    novoCadastro(){
+        this.$router.push({
+                path: "dadosPessoais",
+                params: { parametros: "" },
+            });
+    }
 }
 }
 </script>
