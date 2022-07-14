@@ -6,7 +6,7 @@
       <div class="row">
         <div class="col-12">
           <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-          <label for="inputEmail" class="sr-only">Matricula</label>
+          <label for="inputEmail" class="sr-only">CPF ou Matricula</label>
           <input type="email" id="inputEmail" class="form-control" placeholder="Informe a Matrícula" required=""
             autofocus="" v-model="matricula">
           <label for="inputPassword" class="sr-only">Senha</label>
@@ -56,7 +56,7 @@ export default {
 
     validar() {
 
-      if (this.matricula == "123" && this.senha == "123") {
+      if (this.matricula == "00000000000" && this.senha == "123") {
 
         var parametros = {
 

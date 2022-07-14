@@ -31,10 +31,21 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link nav-link--sair" href="localhost:8080">Sair</a>
+                        <a class="nav-link nav-link--sair" @click="limpaLocalStore">Sair</a>
                     </li>
                 </ul>
             </div>
         </nav>
 </template>
 
+<script>
+
+export default {
+methods: { 
+    limpaLocalStore(){
+        localStorage.clear();
+
+    },
+}
+}
+</script>
