@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-light" >
             <a class="navbar-brand" href="#">
                 <h1>DIVEP</h1>
             </a>
@@ -8,7 +8,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse flex-row-reverse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse flex-row-reverse" id="navbarSupportedContent"
+            >
                 <ul class="navbar-nav mr-auto">
                     <!-- <li class="nav-item active">
                         <a class="nav-link nav-link--inicio" href="#">Início</a>
@@ -41,6 +42,15 @@
 <script>
 
 export default {
+
+computed:{
+    routes(){
+       return this.$router.options.routes.filter(route => "meta" in route && "displayName" in route.meta)
+    },
+    
+  
+ 
+},
 methods: { 
     limpaLocalStore(){
         localStorage.clear();

@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" >
 
-    <Header />
+    <Header  v-if="notIsloginPagev"/>
     <Content />
 
   </div>
@@ -9,15 +9,28 @@
 
 <script>
 
+
 import Content from './partials/template/Content.vue';
 import Header from './partials/template/Header.vue';
 
 export default {
   name: 'App',
+
+  data(){
+    return {
+      show: "true"
+    }
+  },
   components: {
     Content,
     Header
-  }
+  }, 
+  computed:{
+    notIsloginPage(){
+      return this.$router.name !== "LoginUsuario" ;
+    },
+  },
+
 }
 </script>
 

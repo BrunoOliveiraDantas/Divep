@@ -16,11 +16,15 @@ export default new VueRouter({
     routes: [
         {
             path: '/inicio',
+            name:"inicio",
             component: Inicio,
+           
         },
         {
             path: '/',
+            name:"LoginUsuario",
             component: LoginUsuario,
+          
         },
         {
             path: '/ferias',
@@ -34,6 +38,8 @@ export default new VueRouter({
             path:'/dadosPessoais',
             component: DadosPessoais
         },
+
+        
       
     ]
   })

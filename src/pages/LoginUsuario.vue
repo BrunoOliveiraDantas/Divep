@@ -1,6 +1,7 @@
 <template>
-
+ 
   <div class="container-login col-md-12">
+     
 
     <div class="card-login col-md-3 mt-5">
       <div class="row">
@@ -33,10 +34,16 @@
 
 <script>
 
+import Header from '@/partials/template/Header.vue';
 export default {
+
+  beforeUpdate(){
+    this.$stroe.commit('setLayout', {Header:true})
+  },
 
   data() {
     return {
+//valor: "<Header /> ",
 
       matricula: "",
       senha: "",
@@ -44,15 +51,17 @@ export default {
     }
   },
   computed: {
-
+   
   },
   component: {
-
+Header 
   },
   moutend() {
+ 
 
   },
   methods: {
+    
 
     validar() {
 

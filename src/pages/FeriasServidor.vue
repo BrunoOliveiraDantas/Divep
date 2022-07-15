@@ -32,6 +32,7 @@
                             <div role="group">
                                 <label for="input-live">Data inicio:</label>
                                 <b-form-input id="input-live" type="date" v-model="feriasSelecionadas.dataInicio"
+                                v-on:change="calculaDataFim" 
                                     aria-describedby="input-live-help input-live-feedback"
                                     placeholder="Insira a data de inicio das férias" trim></b-form-input>
                             </div>
@@ -128,7 +129,7 @@ export default {
                 match[1]); // day
             return date;
         },
-        formatarObjetoData(d) {
+    /*     formatarObjetoData(d) {
             if (!d) return d
             let data = new Date(d)
             if (!(data instanceof Date) || isNaN(data.valueOf()))
@@ -136,7 +137,7 @@ export default {
 
             return data.toLocaleDateString('pt-BR', { timeZone: "America/Sao_Paulo" })
         },
-
+ */
         addFerias() {
             let itemFerias = {};
             itemFerias.isActive = "true";
@@ -149,6 +150,13 @@ export default {
                 this.items.push(itemFerias)
                 localStorage.setItem("ferias", JSON.stringify(this.items));}, 900)
             //localStorage.setItem("ferias1", JSON.stringify(this.items));
+        },
+        calculaDataFim(){
+            let dataInicio = this.feriasSelecionadas.dataInicio
+            let dias = this.feriasSelecionadas.diasFerias
+            let dataFinal = dataInicio + dias;
+            this.feriasSelecionadas.dataFim = this.formatarObjetoData(dataFinal);
+            console.log("data final é ",dataFinal); // 19
         },
 /*         salvarFerias() {
             console.log("CAI NO SALVAR")
