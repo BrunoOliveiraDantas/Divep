@@ -22,7 +22,7 @@ export default new VueRouter({
         },
         {
             path: '/',
-            name:"LoginUsuario",
+            name:"login",
             component: LoginUsuario,
           
         },

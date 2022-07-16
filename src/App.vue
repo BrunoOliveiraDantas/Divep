@@ -1,7 +1,7 @@
 <template>
   <div id="app" >
 
-    <Header  v-if="notIsloginPagev"/>
+    <Header  v-if="notIsLoginPage" />
     <Content />
 
   </div>
@@ -18,18 +18,18 @@ export default {
 
   data(){
     return {
-      show: "true"
+    
     }
   },
   components: {
     Content,
     Header
   }, 
-  computed:{
-    notIsloginPage(){
-      return this.$router.name !== "LoginUsuario" ;
-    },
-  },
+computed: {
+    notIsLoginPage() {
+      return this.$route.name !== "login";
+    }
+  }
 
 }
 </script>
