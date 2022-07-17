@@ -1,6 +1,6 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light" >
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" @click="inicio">
                 <h1>DIVEP</h1>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -30,6 +30,10 @@
                     <li class="nav-item">
                         <a class="nav-link nav-link--novo" @click="novoCadastro">Novo</a>
                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link nav-link--novo" @click="administrativo">Apoio</a>
+                    </li>
+
 
                     <li class="nav-item">
                         <a class="nav-link nav-link--sair" @click="limpaLocalStore">Sair</a>
@@ -59,6 +63,18 @@ methods: {
     novoCadastro(){
         this.$router.push({
                 path: "dadosPessoais",
+                params: { parametros: "" },
+            });
+    },
+    administrativo(){
+        this.$router.push({
+                path: "administrativo",
+                params: { parametros: "" },
+            });
+    },
+     inicio(){
+        this.$router.push({
+                path: "inicio",
                 params: { parametros: "" },
             });
     }
