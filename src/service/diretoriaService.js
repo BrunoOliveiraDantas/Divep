@@ -14,4 +14,17 @@ export const diretoriaService = {
           })
         });
       },
+
+      listarDiretoria(diretoria) {
+        return new Promise((resolve, reject) => {
+          axios.get(`http://sigepi.adalberto1538.c41.integrator.host/diretoria`, diretoria)
+          .then(ret => {
+            resolve(ret)
+          }).catch(err => {
+            reject(err)
+          })
+        });
+      },
+     
+        
 }

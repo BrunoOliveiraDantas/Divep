@@ -18,6 +18,25 @@
                             aria-describedby="input-live-help input-live-feedback"
                             placeholder="Informe a sigla da Gerência" trim v-model="gerencia.sigla"></b-form-input>
                     </div>
+
+                    <div class="form-group">
+                <label for="diretoria">Diretoria</label>
+                <select
+                  id="diretoria"
+                  class="form-control"
+                  v-model="gerencia.idDiretoria"
+                 
+                >
+                  <option >Selecione</option>
+                  <option
+                    v-for="id in diretoria"
+                    :key="id.nome"
+                    :value="id.nome"
+                  >
+                    {{ id.nome }}
+                  </option>
+                </select>
+              </div>
                  
                 </div>
 
@@ -52,6 +71,7 @@
 <script>
 
 import { gerenciaService } from "@/service/gerenciaService";
+import { diretoriaService } from "@/service/diretoriaService";
 
 export default {
     data() {
@@ -60,6 +80,7 @@ export default {
                 nome: null,
                 sigla: null,
             },
+            tipoDiretoria:[],
             fields: [
                  {
                      key: 'Nome',
@@ -83,6 +104,9 @@ export default {
             ]
 
         }
+    },
+    mounted(){
+        this.listarDiretoria()
     },
     methods: {
         toDDMMYYYY(strData) {
@@ -116,7 +140,7 @@ export default {
         },
         adicionarGerencia(){
               gerenciaService
-        .salvarGerencia( this.gerencia)
+        .salvarGerencia(this.gerencia)
         .then(() => { 
 
           console.log("entrou aqui")
@@ -129,6 +153,14 @@ export default {
                  
           // Aqui vai chamar a mensagem de erro          
         });
+        },
+
+        listarDiretoria(){
+            diretoriaService
+            .listarDiretoria().then((res) => {
+        this.tipoDiretoria = res;
+        console.log("diretoria", this.tipoDiretoria)
+      });
         },
     },
 
