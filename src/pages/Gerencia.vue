@@ -10,13 +10,13 @@
                         <label for="input-live">Nome</label>
                         <b-form-input id="input-live" type="text"
                             aria-describedby="input-live-help input-live-feedback"
-                            placeholder="Informe o nome da Gerência" trim></b-form-input>
+                            placeholder="Informe o nome da Gerência" trim v-model="gerencia.nome"></b-form-input>
                     </div>
                      <div class="col-lg-6" role="group">
                         <label for="input-live">Sigla</label>
                         <b-form-input id="input-live" type="text"
                             aria-describedby="input-live-help input-live-feedback"
-                            placeholder="Informe a sigla da Gerência" trim></b-form-input>
+                            placeholder="Informe a sigla da Gerência" trim v-model="gerencia.sigla"></b-form-input>
                     </div>
                  
                 </div>
@@ -24,7 +24,7 @@
                 <div class="col-lg-3">
 
                     <div class="container-buttons-salvar">
-                        <button @click="addGerencia">Salvar</button>
+                        <button @click="adicionarGerencia">Salvar</button>
                     </div>
                     <div class="container-buttons-salvar">
                         <router-link to="/administrativo"><button>Voltar</button></router-link>
@@ -50,6 +50,8 @@
 </template>
 
 <script>
+
+import { gerenciaService } from "@/service/gerenciaService";
 
 export default {
     data() {
@@ -111,6 +113,22 @@ export default {
                 localStorage.setItem("abono", JSON.stringify(this.items));
             }, 900)
             
+        },
+        adicionarGerencia(){
+              gerenciaService
+        .salvarGerencia( this.gerencia)
+        .then(() => { 
+
+          console.log("entrou aqui")
+        
+          // apos salvar verificar qual tela ou serviço será chamado.
+        })
+        .catch(() => {  
+          console.log("entrou aqui no erro")
+
+                 
+          // Aqui vai chamar a mensagem de erro          
+        });
         },
     },
 

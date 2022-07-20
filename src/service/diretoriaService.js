@@ -1,12 +1,12 @@
 
 import axios from "axios";
 
-export const usuarioService = {
+export const diretoriaService = {
 
     
-    salvarUsuario(usuario) {
+    salvarDiretoria(diretoria) {
         return new Promise((resolve, reject) => {
-          axios.post(`http://sigepi.adalberto1538.c41.integrator.host/usuario`, usuario)
+          axios.post(`http://sigepi.adalberto1538.c41.integrator.host/diretoria`, diretoria)
           .then(ret => {
             resolve(ret)
           }).catch(err => {
