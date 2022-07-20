@@ -4,40 +4,29 @@
         <div class="card">
             <h2 class="card__titulo"> Cadastro de Gerência</h2>
             <div class="row">
-                <div class="col-lg-9">                    
+                <div class="col-lg-9">
 
                     <div class="col-lg-6" role="group">
                         <label for="input-live">Nome</label>
-                        <b-form-input id="input-live" type="text"
-                            aria-describedby="input-live-help input-live-feedback"
+                        <b-form-input id="input-live" type="text" aria-describedby="input-live-help input-live-feedback"
                             placeholder="Informe o nome da Gerência" trim v-model="gerencia.nome"></b-form-input>
                     </div>
-                     <div class="col-lg-6" role="group">
+                    <div class="col-lg-6" role="group">
                         <label for="input-live">Sigla</label>
-                        <b-form-input id="input-live" type="text"
-                            aria-describedby="input-live-help input-live-feedback"
+                        <b-form-input id="input-live" type="text" aria-describedby="input-live-help input-live-feedback"
                             placeholder="Informe a sigla da Gerência" trim v-model="gerencia.sigla"></b-form-input>
                     </div>
 
                     <div class="form-group">
-                <label for="diretoria">Diretoria</label>
-                <select
-                  id="diretoria"
-                  class="form-control"
-                  v-model="gerencia.idDiretoria"
-                 
-                >
-                  <option >Selecione</option>
-                  <option
-                    v-for="id in diretoria"
-                    :key="id.nome"
-                    :value="id.nome"
-                  >
-                    {{ id.nome }}
-                  </option>
-                </select>
-              </div>
-                 
+                        <label for="diretoria">Diretoria</label>
+                        <select id="diretoria" class="form-control" v-model="gerencia.idDiretoria">
+                            <option>Selecione</option>
+                            <option v-for="id in diretoria" :key="id.nome" :value="id.nome">
+                                {{ id.nome }}
+                            </option>
+                        </select>
+                    </div>
+
                 </div>
 
                 <div class="col-lg-3">
@@ -79,13 +68,14 @@ export default {
             gerencia: {
                 nome: null,
                 sigla: null,
+                idDiretoria:"",
             },
-            tipoDiretoria:[],
+            tipoDiretoria: [],
             fields: [
-                 {
-                     key: 'Nome',
-                     sortable: false
-                 },
+                {
+                    key: 'Nome',
+                    sortable: false
+                },
                 {
                     key: 'Sigla',
                     sortable: false
@@ -98,14 +88,14 @@ export default {
                  } */
             ],
             itemsGerencia: [
-                { Sigla: "ATEC", Nome:"Tecnologia"},
-                { Sigla: "CODIP", Nome:"CorAudioVisual"},
-               
+                { Sigla: "ATEC", Nome: "Tecnologia" },
+                { Sigla: "CODIP", Nome: "CorAudioVisual" },
+
             ]
 
         }
     },
-    mounted(){
+    mounted() {
         this.listarDiretoria()
     },
     methods: {
@@ -136,31 +126,31 @@ export default {
                 this.items.push(itemAbono)
                 localStorage.setItem("abono", JSON.stringify(this.items));
             }, 900)
-            
+
         },
-        adicionarGerencia(){
-              gerenciaService
-        .salvarGerencia(this.gerencia)
-        .then(() => { 
+        adicionarGerencia() {
+            gerenciaService
+                .salvarGerencia(this.gerencia)
+                .then(() => {
 
-          console.log("entrou aqui")
-        
-          // apos salvar verificar qual tela ou serviço será chamado.
-        })
-        .catch(() => {  
-          console.log("entrou aqui no erro")
+                    console.log("entrou aqui")
 
-                 
-          // Aqui vai chamar a mensagem de erro          
-        });
+                    // apos salvar verificar qual tela ou serviço será chamado.
+                })
+                .catch(() => {
+                    console.log("entrou aqui no erro")
+
+
+                    // Aqui vai chamar a mensagem de erro          
+                });
         },
 
-        listarDiretoria(){
+        listarDiretoria() {
             diretoriaService
-            .listarDiretoria().then((res) => {
-        this.tipoDiretoria = res;
-        console.log("diretoria", this.tipoDiretoria)
-      });
+                .listarDiretoria().then((res) => {
+                    this.tipoDiretoria = res;
+                    console.log("diretoria", this.tipoDiretoria)
+                });
         },
     },
 

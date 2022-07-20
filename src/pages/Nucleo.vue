@@ -10,13 +10,23 @@
                         <label for="input-live">Nome</label>
                         <b-form-input id="input-live" type="text"
                             aria-describedby="input-live-help input-live-feedback"
-                            placeholder="Informe o nome do Núcleo" trim></b-form-input>
+                            placeholder="Informe o nome do Núcleo" trim v-model="nucleo.nome"></b-form-input>
                     </div>
                      <div class="col-lg-6" role="group">
                         <label for="input-live">Sigla</label>
                         <b-form-input id="input-live" type="text"
                             aria-describedby="input-live-help input-live-feedback"
-                            placeholder="Informe a sigla do Núcleo" trim></b-form-input>
+                            placeholder="Informe a sigla do Núcleo" trim v-model="nucleo.sigla"></b-form-input>
+                    </div>
+
+                     <div class="form-group">
+                        <label for="diretoria">Gerência</label>
+                        <select id="diretoria" class="form-control" v-model="nucleo.idGerencia">
+                            <option>Selecione</option>
+                            <option v-for="gerencia in gerencia" :key="gerencia.id" :value="gerencia.id">
+                                {{ gerencia.nome }}
+                            </option>
+                        </select>
                     </div>
                  
                 </div>
@@ -24,7 +34,7 @@
                 <div class="col-lg-3">
 
                     <div class="container-buttons-salvar">
-                        <button @click="addNucleo">Salvar</button>
+                        <button @click="adicionarNucleo">Salvar</button>
                     </div>
                     <div class="container-buttons-salvar">
                         <router-link to="/administrativo"><button>Voltar</button></router-link>
@@ -51,13 +61,18 @@
 
 <script>
 
+import { nucleoService } from "@/service/nucleoService";
+import { gerenciaService } from "@/service/gerenciaService";
+
 export default {
     data() {
         return {
             nucleo: {
                 nome: null,
                 sigla: null,
+                idGerencia:"",
             },
+            tipoGerencia:[],
             fields: [
                  {
                      key: 'Nome',
@@ -81,6 +96,9 @@ export default {
             ]
 
         }
+    },
+    mounted(){
+        this.listarGerencia()
     },
     methods: {
         toDDMMYYYY(strData) {
@@ -111,6 +129,32 @@ export default {
                 localStorage.setItem("abono", JSON.stringify(this.items));
             }, 900)
             
+        },
+
+        adicionarNucleo(){
+
+        nucleoService
+        .salvarNucleo( this.nucleo)
+        .then(() => { 
+
+          console.log("entrou aqui")
+        
+          // apos salvar verificar qual tela ou serviço será chamado.
+        })
+        .catch(() => {  
+          console.log("entrou aqui no erro")
+
+                 
+          // Aqui vai chamar a mensagem de erro          
+        });
+
+        },
+         listarGerencia() {
+            gerenciaService
+                .listarGerencia().then((res) => {
+                    this.tipoGerencia = res;
+                    console.log("diretoria", this.tipoGerencia)
+                });
         },
     },
 
