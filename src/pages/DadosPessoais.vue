@@ -5,7 +5,7 @@
         <div class="row">
           <div class=" col-md-4 ">
             <label for="nome" class="form-label">Nome do Servidor</label>
-            <input type="text" class="form-control" id="nome">
+            <input type="text" class="form-control" id="nome" v-model.trim="usuario.nomeCivil">
           </div>
           <div class=" col-md-4 ">
             <label for="apelido" class="form-label">Apelido</label>
@@ -13,27 +13,27 @@
           </div>
           <div class="col-md-4 ">
             <label for="nomSocial" class="form-label">Nome Social</label>
-            <input type="text" class="form-control" id="nomSocial">
+            <input type="text" class="form-control" id="nomSocial" v-model.trim="usuario.nomeSocial">
           </div>
         </div>
         <div class="row">
           <div class="col-md-4 ">
             <label for="cpf">CPF</label>
-            <input type="text" class="form-control" id="cpf">
+            <input type="text" class="form-control" id="cpf" v-model="usuario.cpf">
           </div>
           <div class="col-md-4 ">
             <label for="matricula">Matricula</label>
-            <input type="text" class="form-control" id="matricula">
+            <input type="text" class="form-control" id="matricula" v-model.trim="usuario.matricula">
           </div>
           <div class="col-md-4 ">
             <label for="rg">RG</label>
-            <input type="text" class="form-control" id="rg">
+            <input type="text" class="form-control" id="rg" v-model="usuario.identidade">
           </div>
         </div>
         <fieldset class="row">
           <div class="col-md-4 ">
             <label for="staticEmail2">Data de Nascimento</label>
-            <input type="date" class="form-control" id="staticEmail2">
+            <input type="date" class="form-control" id="staticEmail2" v-model="usuario.nascimento">
           </div>
           <div class="col-sm-4">
             <legend class="col-form-label col-sm-4 pt-0">Sexo</legend>
@@ -85,7 +85,7 @@
           <div class="col-md-4">
             <legend class="col-form-label col-sm pt-0">Pessoas com Deficiência</legend>
             <div class=" col-sm-2 form-check">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked v-model="usuario.tipoDeficiencia">
               <label class="form-check-label" for="gridRadios1">
                 Sim
               </label>
@@ -106,7 +106,7 @@
             <legend class="col-form-label col-sm pt-0">Tipo Sanguinéo</legend>
             <div class="col-sm-10">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked v-model="usuario.tipoSanguineo">
                 <label class="form-check-label" for="gridRadios1">
                   A+
                 </label>
@@ -231,11 +231,11 @@
 
         <div class="col-sm-12 mb-2 ">
           <label for="ra">Foto de rosto</label>
-          <input type="text" class="form-control" id="ra">
+          <input type="text" class="form-control" id="ra" v-model="usuario.foto">
         </div>
 
         <div class="ccol-md-6">
-          <button type="button" class="btn btn-primary mb-3">Salvar</button>
+          <button type="button" class="btn btn-primary mb-3" @click="adicionarUsuario">Salvar</button>
         </div>
 
       </form>
@@ -246,6 +246,52 @@
 </template>
 
 <script>
+
+import { usuarioService } from "@/service/usuarioService";
+
+export default {
+  data (){
+    return {
+      usuario: {
+        cpf:"",
+        nomeCivil:"",
+        nomeSocial:"",
+        matricula:"",
+        emailPessoal:"",
+        identidade:"",
+        nascimento:"",
+        sexo:"",
+        genero:"",
+        escolaridade:"",
+        tipoDeficiencia:"",
+        tipoSanguineo:"",
+        foto:"",
+
+
+      }
+    }
+  },
+  methods:{
+      adicionarUsuario() {       
+      
+       usuarioService
+        .salvarUsuario( this.usuario)
+        .then(() => { 
+
+          console.log("entrou aqui")
+        
+          // apos salvar verificar qual tela ou serviço será chamado.
+        })
+        .catch(() => {  
+          console.log("entrou aqui no erro")
+
+                 
+          // Aqui vai chamar a mensagem de erro          
+        });
+    },
+    
+  }
+}
 
 </script>
 
