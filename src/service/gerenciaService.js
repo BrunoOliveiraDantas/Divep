@@ -14,4 +14,16 @@ export const gerenciaService = {
           })
         });
       },
+
+      listarGerencia() {
+
+        return new Promise((resolve, reject) => {
+          axios.get(`http://sigepi.adalberto1538.c41.integrator.host/gerencia`)
+          .then(ret => {
+            resolve(ret)
+          }).catch(err => {
+            reject(err)
+          })
+        });
+      },
 }

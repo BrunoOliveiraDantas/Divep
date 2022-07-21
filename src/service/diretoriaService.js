@@ -23,14 +23,12 @@ export const diretoriaService = {
         });
       },
 
-      listarDiretoria(diretoria) {
-
-       
+      listarDiretoria() {
 
         return new Promise((resolve, reject) => {
-          axios.get(`http://sigepi.adalberto1538.c41.integrator.host/diretoria`, diretoria)
+          axios.get(`http://sigepi.adalberto1538.c41.integrator.host/diretoria`)
           .then(ret => {
-            resolve(ret)
+            resolve(ret.data)
           }).catch(err => {
             reject(err)
           })
