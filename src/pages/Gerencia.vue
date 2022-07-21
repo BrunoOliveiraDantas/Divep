@@ -19,10 +19,10 @@
 
                     <div class="form-group">
                         <label for="diretoria">Diretoria</label>
-                        <select id="diretoria" class="form-control" v-model="gerencia.idDiretoria">
+                        <select id="diretoria" class="form-control" v-model="gerencia.diretoria">
                             <option>Selecione</option>
-                            <option v-for="id in diretoria" :key="id.nome" :value="id.nome">
-                                {{ id.nome }}
+                            <option v-for="diretoria in tipoDiretoria" :key="diretoria.id" :value="diretoria.id">
+                                {{ diretoria.sigla }}
                             </option>
                         </select>
                     </div>
@@ -68,7 +68,7 @@ export default {
             gerencia: {
                 nome: null,
                 sigla: null,
-                idDiretoria:"",
+                diretoria:"",
             },
             tipoDiretoria: [],
             fields: [
@@ -148,7 +148,7 @@ export default {
         listarDiretoria() {
             diretoriaService
                 .listarDiretoria().then((res) => {
-                    this.tipoDiretoria = res;
+                    this.tipoDiretoria = res.data;
                     console.log("diretoria", this.tipoDiretoria)
                 });
         },

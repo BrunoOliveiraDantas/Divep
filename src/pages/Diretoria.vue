@@ -60,6 +60,8 @@ export default {
                 nome: null,
                 sigla: null,
             },
+            listaDiretorias: [],
+            
             fields: [
                  {
                      key: 'Nome',
@@ -77,12 +79,15 @@ export default {
                  } */
             ],
             itemsDiretoria: [
-                { Sigla: "NVP", Nome:"Nuvep"},
-                { Sigla: "DCP", Nome:"Dicap"},
+               /*  { Sigla: "NVP", Nome:"Nuvep"},
+                { Sigla: "DCP", Nome:"Dicap"}, */
                
             ]
 
         }
+    },
+       mounted() {
+        this.listarDiretoria()
     },
     methods: {
         toDDMMYYYY(strData) {
@@ -131,6 +136,22 @@ export default {
           // Aqui vai chamar a mensagem de erro          
         });
     },
+
+     listarDiretoria() {
+            diretoriaService
+                .listarDiretoria().then((res) => {
+                   
+                    this.listaDiretorias = res;
+                     console.log("diretorias teste", this.listaDiretoria) 
+                    let diretoria  = [{}]
+                    for (let index = 0; index < this.listaDiretorias.length; index ++){
+                        diretoria[index].Nome = this.listaDiretorias[index].nome;
+                        diretoria[index].Sigla = this.listaDiretorias[index].sigla;
+                        this.itemsDiretoria.push(diretoria[index])
+                    } 
+                                      
+                });
+        },
      
 
     }

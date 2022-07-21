@@ -21,9 +21,9 @@
 
                      <div class="form-group">
                         <label for="diretoria">Gerência</label>
-                        <select id="diretoria" class="form-control" v-model="nucleo.idGerencia">
+                        <select id="diretoria" class="form-control" v-model="nucleo.gerencia">
                             <option>Selecione</option>
-                            <option v-for="gerencia in gerencia" :key="gerencia.id" :value="gerencia.id">
+                            <option v-for="gerencia in tipoGerencia" :key="gerencia.id" :value="gerencia.id">
                                 {{ gerencia.nome }}
                             </option>
                         </select>
@@ -70,7 +70,7 @@ export default {
             nucleo: {
                 nome: null,
                 sigla: null,
-                idGerencia:"",
+                gerencia:"",
             },
             tipoGerencia:[],
             fields: [
@@ -152,8 +152,8 @@ export default {
          listarGerencia() {
             gerenciaService
                 .listarGerencia().then((res) => {
-                    this.tipoGerencia = res;
-                    console.log("diretoria", this.tipoGerencia)
+                    this.tipoGerencia = res.data;
+                    console.log("gerencia", this.tipoGerencia)
                 });
         },
     },
