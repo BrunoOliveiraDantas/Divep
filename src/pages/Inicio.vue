@@ -12,29 +12,64 @@
                 <div class="col-lg-6">
 
                     <div class="row">
+                        <div class="form-group">
+                        <label for="diretoria">Diretoria</label>
+                        <select id="diretoria" class="form-control" v-model="usuario.diretorias[0].sigla">
+                            <option>Selecione</option>
+                            <option v-for="diretoria in listaDiretoria" :key="diretoria.id" :value="diretoria.id">
+                                {{ diretoria.sigla }}
+                            </option>
+                        </select>
+</div>
+                        <div class="col-lg-3">
+                            <div role="group">
+                                <label for="input-live">Gerência:</label>
+                                <b-form-select class="mb-3 input-select">
+                                    <b-form-select-option value="C">Opção 1</b-form-select-option>
+                                    <b-form-select-option value="D">Opção 2</b-form-select-option>
+                                </b-form-select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div role="group">
+                                <label for="input-live">Nucleo:</label>
+                                <b-form-select class="mb-3 input-select">
+                                    <b-form-select-option value="C">Opção 1</b-form-select-option>
+                                    <b-form-select-option value="D">Opção 2</b-form-select-option>
+                                </b-form-select>
+                            </div>
+                            
+                        </div>
+                        <div class="col-lg-3">
+                            <div role="group">
+                                <label for="input-live">Setor:</label>
+                                <b-form-select class="mb-3 input-select">
+                                    <b-form-select-option value="C">Opção 1</b-form-select-option>
+                                    <b-form-select-option value="D">Opção 2</b-form-select-option>
+                                </b-form-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-lg-3">
                             <div role="group">
                                 <label for="input-live">CPF:</label>
-                                <b-form-input id="input-live" aria-describedby="input-live-help input-live-feedback"
+                                <b-form-input v-model="usuario.vinculos[0].usuario.cpf"  id="input-live" aria-describedby="input-live-help input-live-feedback"
                                     placeholder="Insira o CPF" trim></b-form-input>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div role="group">
-                                <label for="input-live">Lotação:</label>
-                                <b-form-select class="mb-3 input-select">
-                                    <b-form-select-option value="C">Opção 1</b-form-select-option>
-                                    <b-form-select-option value="D">Opção 2</b-form-select-option>
-                                </b-form-select>
+                                <label for="input-live">Matricula:</label>
+                                <b-form-input v-model="usuario.vinculos[0].matricula" id="input-live" aria-describedby="input-live-help input-live-feedback"
+                                    placeholder="Matricula" trim></b-form-input>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div role="group">
-                                <label for="input-live">Situação:</label>
-                                <b-form-select class="mb-3 input-select">
-                                    <b-form-select-option value="C">Opção 1</b-form-select-option>
-                                    <b-form-select-option value="D">Opção 2</b-form-select-option>
-                                </b-form-select>
+                                <label for="input-live">Nome Servidor:</label>
+                                <b-form-input v-model="usuario.nome" id="input-live" aria-describedby="input-live-help input-live-feedback"
+                                    placeholder="Insira o nome completo" trim></b-form-input>
                             </div>
                         </div>
                         <div class="col-lg-3">
@@ -43,27 +78,9 @@
                                 <b-form-input id="input-live" aria-describedby="input-live-help input-live-feedback"
                                     placeholder="Informe o Processo" trim></b-form-input>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div role="group">
-                                <label for="input-live">Nome Servidor:</label>
-                                <b-form-input id="input-live" aria-describedby="input-live-help input-live-feedback"
-                                    placeholder="Insira o nome completo" trim></b-form-input>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div role="group">
-                                <label for="input-live">Gerência:</label>
-                                <b-form-select class="mb-3 input-select">
-                                    <b-form-select-option value="C">Opção 1</b-form-select-option>
-                                    <b-form-select-option value="D">Opção 2</b-form-select-option>
-                                </b-form-select>
-                            </div>
 
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <div role="group">
                                 <label for="input-live">Url do Processo SEI:</label>
                                 <b-form-input id="input-live" aria-describedby="input-live-help input-live-feedback"
@@ -231,10 +248,13 @@
 
 <script>
 
+import { diretoriaService } from "@/service/diretoriaService";
 
 export default {
     data() {
         return {
+            usuario: {},
+            listaDiretoria: [],
             /*            fieldsFerias: [
                            {
                                key: 'Exercicio',
@@ -264,6 +284,14 @@ export default {
         }
     },
     methods: {
+        listarDiretoria() {
+            diretoriaService
+                .listarDiretoria().then((res) => {
+                    this.listaDiretoria = res;
+                    console.log("diretoria", this.listaDiretoria)
+                });
+        },
+    
         incluirFeriasServidor() {
             this.$router.push({
                 path: "ferias",
@@ -290,14 +318,22 @@ export default {
             if (localStorage.getItem("abono")) {
                 this.itemsAbono = JSON.parse(localStorage.getItem("abono"));
             }
+            if (localStorage.getItem("usuario")) {
+      try {
+        this.usuario = JSON.parse(localStorage.getItem("usuario"));
+      } catch (e) {
+        localStorage.removeItem("usuario");
+      }
+    }
         }
 
     },
-
-    mounted() {
-        this.verificaLocalStore();
-    }
-
+  mounted(){
+    this.verificaLocalStore();
+    this.usuario = JSON.parse(localStorage.getItem("usuario")),
+    this.listarDiretoria();
+    
+  }
 
 }
 

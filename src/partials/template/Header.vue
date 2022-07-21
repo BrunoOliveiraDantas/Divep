@@ -30,10 +30,16 @@
                     <li class="nav-item">
                         <a class="nav-link nav-link--novo" @click="novoCadastro">Novo</a>
                     </li>
-                     <li class="nav-item">
+                    <b-dropdown text="Apoio">
+    <b-dropdown-item @click="diretoria">Diretoria</b-dropdown-item>
+    <b-dropdown-item @click="gerencia">Gerência</b-dropdown-item>
+    <b-dropdown-item @click="nucleo">Núcleo</b-dropdown-item>
+    <b-dropdown-item @click="setor">Setor</b-dropdown-item>
+  </b-dropdown>
+                     <!-- <li class="nav-item">
                         <a class="nav-link nav-link--novo" @click="administrativo">Apoio</a>
                         
-                    </li>
+                    </li> -->
 
 
                     <li class="nav-item">
@@ -73,6 +79,31 @@ methods: {
                 params: { parametros: "" },
             });
     },
+    diretoria(){
+        this.$router.push({
+                path: "diretoria",
+                params: { parametros: "" },
+            });
+    },
+    gerencia(){
+        this.$router.push({
+                path: "gerencia",
+                params: { parametros: "" },
+            });
+    },
+    nucleo(){
+        this.$router.push({
+                path: "nucleo",
+                params: { parametros: "" },
+            });
+    },
+     setor(){
+        this.$router.push({
+                path: "setor",
+                params: { parametros: "" },
+            });
+    },
+    
      inicio(){
         this.$router.push({
                 path: "inicio",

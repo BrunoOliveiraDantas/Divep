@@ -270,14 +270,11 @@ export default {
         tipoDeficiencia: "",
         tipoSanguineo: "",
         foto: "",
-
-
       }
     }
   },
   methods: {
     adicionarUsuario() {
-
       usuarioService
         .salvarUsuario(this.usuario)
         .then(() => {
@@ -293,8 +290,8 @@ export default {
           // Aqui vai chamar a mensagem de erro          
         });
     },
+  },
 
-  }
 }
 
 </script>

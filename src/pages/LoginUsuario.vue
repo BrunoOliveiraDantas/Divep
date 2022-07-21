@@ -1,15 +1,15 @@
 <template>
- 
+
   <div class="container-login col-md-12">
-     
+
 
     <div class="card-login col-md-3 mt-5">
       <div class="row">
         <div class="col-12">
           <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-          <label for="inputEmail" class="sr-only">CPF ou Matricula</label>
+          <label for="inputEmail" class="sr-only">CPF</label>
           <input type="email" id="inputEmail" class="form-control" placeholder="Informe a Matrícula" required=""
-            autofocus="" v-model="matricula">
+            autofocus="" v-model="cpf">
           <label for="inputPassword" class="sr-only">Senha</label>
           <input type="password" id="inputPassword" class="form-control" placeholder="Informe a Senha" required=""
             v-model="senha">
@@ -35,54 +35,64 @@
 <script>
 
 import Header from '@/partials/template/Header.vue';
+import { loginService } from "@/service/loginService";
+
 export default {
 
-  beforeUpdate(){
-    this.$stroe.commit('setLayout', {Header:true})
+  beforeUpdate() {
+    this.$stroe.commit('setLayout', { Header: true })
   },
 
   data() {
     return {
-//valor: "<Header /> ",
-
-      matricula: "",
+      //valor: "<Header /> ",
+      usuario: {},
+      cpf: "",
       senha: "",
 
     }
   },
   computed: {
-   
+
   },
   component: {
-Header 
+    Header
   },
   moutend() {
- 
+
 
   },
   methods: {
-    
-
     validar() {
-
-      if (this.matricula == "00000000000" && this.senha == "123") {
-
-        var parametros = {
-
-        };
-        this.$router.push({
-          path: "inicio",
-          params: { parametros: parametros },
-        });
-
-      } else {
+/*       if (this.matricula == "00000000000" && this.senha == "123") {
+      
+              var parametros = {
+      
+              };
+              this.$router.push({
+                path: "inicio",
+                params: { parametros: parametros },
+              });
+      
+            } else {
+              var alerta = document.getElementById('alerta-mensagem');
+              alerta.classList.toggle('d-none');
+            }
+      
+          } */
+      loginService.loginAcesso(this.cpf, this.senha).then((res) => {
+          this.usuario = res;
+            localStorage.setItem("usuario", JSON.stringify(this.usuario))
+            this.$router.push({
+                path: "inicio",
+              });
+          console.log("USUARIO", this.usuario);
+      }).catch((error) => {
+        console.log(error)
         var alerta = document.getElementById('alerta-mensagem');
-        alerta.classList.toggle('d-none');
-      }
-
+              alerta.classList.toggle("Erro no Login", error);
+      }).finally(() => { });
     }
-
   }
-
 }
 </script>
