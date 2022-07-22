@@ -148,7 +148,7 @@ export default {
         listarDiretoria() {
             diretoriaService
                 .listarDiretoria().then((res) => {
-                    this.tipoDiretoria = res.data;
+                    this.tipoDiretoria = res;
                     console.log("diretoria", this.tipoDiretoria)
                 });
         },

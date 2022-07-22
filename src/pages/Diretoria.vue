@@ -40,7 +40,18 @@
                 <div class="card">
                     <h2 class="card__titulo"> Listas das Diretorias</h2>
 
-                    <b-table striped hover :items="itemsDiretoria" :fields="fields"></b-table>
+                    <b-table striped hover :items="itemsDiretoria" :fields="fields"
+                    :current-page="currentPage"
+      :per-page="perPage"
+      :filter="filter"
+      :filter-included-fields="filterOn"
+      :sort-by.sync="sortBy"
+      :sort-desc.sync="sortDesc"
+      :sort-direction="sortDirection"
+      stacked="md"
+      show-empty
+      small
+      @filtered="onFiltered"></b-table>
 
                 </div>
             </div>
