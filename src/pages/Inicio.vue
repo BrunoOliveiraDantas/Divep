@@ -1,26 +1,35 @@
 <template>
-
     <div class="container">
         <!-- Formulários de entrada-->
         <div class="card">
             <div class="row">
-                <div class="col-lg-3">
-                    <b-col>
-                        <b-img thumbnail fluid src="https://picsum.photos/250/250/?image=54" alt="Image 1"></b-img>
-                    </b-col>
-                </div>
-                <div class="col-lg-6">
-
+                <div class="col-lg-9">
                     <div class="row">
-                        <div class="form-group">
-                        <label for="diretoria">Diretoria</label>
-                        <select id="diretoria" class="form-control" v-model="usuario.diretorias[0].sigla">
-                            <option>Selecione</option>
-                            <option v-for="diretoria in listaDiretoria" :key="diretoria.id" :value="diretoria.id">
-                                {{ diretoria.sigla }}
-                            </option>
-                        </select>
-</div>
+                        <div class="col-lg-3">
+                            <div role="group">
+                                <label for="input-live">Diretoria:</label>
+                                <!-- <select class="form-control form-control-sm">
+                                    <option :selected="diretoria.id == 1" v-for="diretoria in listaDiretoria" :key="diretoria.id" :value="diretoria.id">{{ diretoria.sigla }}</option>
+                                </select> -->
+                                <b-form-select class="mb-3 input-select">
+                                    <b-form-select-option id="selectDiretoria" class="dropdown-diretoria"
+                                        :selected="diretoria.id == sigla" v-for="diretoria in listaDiretoria"
+                                        v-model="sigla" :key="diretoria.id" :value="diretoria.id">
+                                        {{ diretoria.sigla }}</b-form-select-option>
+                                    <!-- <b-form-select-option class="dropdown-item " selected="{{diretoria.id == 1}}" value="D">Opção 2</b-form-select-option>
+ <b-form-select-option class="dropdown-item" value="E">Opção 1</b-form-select-option> -->
+                                </b-form-select>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group">
+                            <label for="diretoria">Diretoria</label>
+                            <select id="diretoria" class="form-control" v-model="usuario.diretorias[0].sigla">
+                                <option>Selecione</option>
+                                <option v-for="diretoria in listaDiretoria" :key="diretoria.id" :value="diretoria.id">
+                                    {{ diretoria.sigla }}
+                                </option>
+                            </select>
+                        </div> -->
                         <div class="col-lg-3">
                             <div role="group">
                                 <label for="input-live">Gerência:</label>
@@ -32,13 +41,13 @@
                         </div>
                         <div class="col-lg-3">
                             <div role="group">
-                                <label for="input-live">Nucleo:</label>
+                                <label for="input-live">Núcleo:</label>
                                 <b-form-select class="mb-3 input-select">
                                     <b-form-select-option value="C">Opção 1</b-form-select-option>
                                     <b-form-select-option value="D">Opção 2</b-form-select-option>
                                 </b-form-select>
                             </div>
-                            
+
                         </div>
                         <div class="col-lg-3">
                             <div role="group">
@@ -53,26 +62,29 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <div role="group">
-                                <label for="input-live">CPF:</label>
-                                <b-form-input v-model="usuario.vinculos[0].usuario.cpf"  id="input-live" aria-describedby="input-live-help input-live-feedback"
-                                    placeholder="Insira o CPF" trim></b-form-input>
+                                <label id="cpf" for="input-live">CPF:</label>
+                                <b-form-input v-model="usuario.vinculos[0].usuario.cpf" id="input-live"
+                                    aria-describedby="input-live-help input-live-feedback" placeholder="Insira o CPF"
+                                    trim></b-form-input>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div role="group">
                                 <label for="input-live">Matricula:</label>
-                                <b-form-input v-model="usuario.vinculos[0].matricula" id="input-live" aria-describedby="input-live-help input-live-feedback"
-                                    placeholder="Matricula" trim></b-form-input>
+                                <b-form-input v-model="usuario.vinculos[0].matricula" id="input-live"
+                                    aria-describedby="input-live-help input-live-feedback" placeholder="Matricula" trim>
+                                </b-form-input>
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-6">
                             <div role="group">
                                 <label for="input-live">Nome Servidor:</label>
-                                <b-form-input v-model="usuario.nome" id="input-live" aria-describedby="input-live-help input-live-feedback"
+                                <b-form-input v-model="usuario.nome" id="input-live"
+                                    aria-describedby="input-live-help input-live-feedback"
                                     placeholder="Insira o nome completo" trim></b-form-input>
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <!-- <div class="col-lg-3">
                             <div role="group">
                                 <label for="input-live">Processo SEI:</label>
                                 <b-form-input id="input-live" aria-describedby="input-live-help input-live-feedback"
@@ -86,7 +98,7 @@
                                 <b-form-input id="input-live" aria-describedby="input-live-help input-live-feedback"
                                     placeholder="Informe a url" trim></b-form-input>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
@@ -94,8 +106,10 @@
 
                     <div class="container-buttons container-buttons--colunas">
                         <button>Pesquisar</button>
-                        <button>Atualizar Dados</button>
-                        <button>Restaurar Senha</button>
+                        <button>
+                            <router-link to="/dadosPessoais">Dados Complementares</router-link>
+                        </button>
+                        <button>Salvar Dados</button>
                     </div>
                 </div>
             </div>
@@ -105,7 +119,7 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="card">
-                    <h2 class="card__titulo">Férias</h2>
+                    <h3 class="card__titulo">Férias</h3>
 
                     <table class="table table-striped">
 
@@ -141,7 +155,7 @@
 
             <div class="col-lg-4">
                 <div class="card">
-                    <h2 class="card__titulo">Abonos</h2>
+                    <h3 class="card__titulo">Abonos</h3>
 
                     <table class="table table-striped">
                         <thead>
@@ -153,7 +167,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="abono in itemsAbono" :key="abono.id">
-                                <td>{{abono.Período}}</td>
+                                <td>{{ abono.Período }}</td>
                             </tr>
 
                         </tbody>
@@ -167,7 +181,7 @@
 
             <div class="col-lg-4">
                 <div class="card">
-                    <h2 class="card__titulo">Licenças/Afastamento</h2>
+                    <h3 class="card__titulo">Licenças/Afastamento</h3>
 
                     <table class="table table-striped">
                         <thead>
@@ -198,7 +212,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <h2 class="card__titulo">Relação de Servidores</h2>
+                    <h3 class="card__titulo">Relação de Servidores</h3>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -285,13 +299,14 @@ export default {
     },
     methods: {
         listarDiretoria() {
+
             diretoriaService
                 .listarDiretoria().then((res) => {
                     this.listaDiretoria = res;
                     console.log("diretoria", this.listaDiretoria)
                 });
         },
-    
+
         incluirFeriasServidor() {
             this.$router.push({
                 path: "ferias",
@@ -319,21 +334,29 @@ export default {
                 this.itemsAbono = JSON.parse(localStorage.getItem("abono"));
             }
             if (localStorage.getItem("usuario")) {
-      try {
-        this.usuario = JSON.parse(localStorage.getItem("usuario"));
-      } catch (e) {
-        localStorage.removeItem("usuario");
-      }
-    }
+                try {
+                    this.usuario = JSON.parse(localStorage.getItem("usuario"));
+                } catch (e) {
+                    localStorage.removeItem("usuario");
+                }
+            }
         }
 
     },
-  mounted(){
-    this.verificaLocalStore();
-    this.usuario = JSON.parse(localStorage.getItem("usuario")),
-    this.listarDiretoria();
-    
-  }
+    mounted() {
+        this.listarDiretoria();
+        this.verificaLocalStore();
+        this.usuario = JSON.parse(localStorage.getItem("usuario"));
+        document.getElementById("#selectDiretoria").value = 1;
+        //console.log("OIOIOI", el);
+
+
+
+    },
+    /*  beforeUpdate() {
+         
+         console.log("OIOIOI", document.getElementById("cpf").value);
+     }, */
 
 }
 

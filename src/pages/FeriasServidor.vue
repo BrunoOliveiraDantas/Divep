@@ -137,7 +137,6 @@ export default {
 
             return data.toLocaleDateString('pt-BR', { timeZone: "America/Sao_Paulo" })
         },
- 
         addFerias() {
             let itemFerias = {};
             itemFerias.isActive = "true";
