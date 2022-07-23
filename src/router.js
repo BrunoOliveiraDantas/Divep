@@ -11,6 +11,7 @@ import Administrativo from '@/pages/Administrativo'
 import Diretoria from '@/pages/Diretoria'
 import Gerencia from '@/pages/Gerencia'
 import Nucleo from '@/pages/Nucleo'
+import Setor from '@/pages/Setor'
 
 Vue.use(VueRouter)
 
@@ -57,6 +58,11 @@ export default new VueRouter({
             path:'/nucleo',
             component: Nucleo
         },
+        {
+            path:'/setor',
+            component: Setor
+        },
+
 
         
       

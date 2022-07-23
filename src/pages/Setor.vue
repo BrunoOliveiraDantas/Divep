@@ -10,13 +10,13 @@
                         <label for="input-live">Nome</label>
                         <b-form-input id="input-live" type="text"
                             aria-describedby="input-live-help input-live-feedback"
-                            placeholder="Informe o nome do Núcleo" trim v-model="setor.nome"></b-form-input>
+                            placeholder="Informe o nome do Setor" trim v-model="setor.nome"></b-form-input>
                     </div>
                      <div class="col-lg-6" role="group">
                         <label for="input-live">Sigla</label>
                         <b-form-input id="input-live" type="text"
                             aria-describedby="input-live-help input-live-feedback"
-                            placeholder="Informe a sigla do Núcleo" trim v-model="setor.sigla"></b-form-input>
+                            placeholder="Informe a sigla do Setor" trim v-model="setor.sigla"></b-form-input>
                     </div>
 
                  
@@ -60,7 +60,7 @@ import { setorService } from "@/service/setorService";
 export default {
     data() {
         return {
-            sigla: {
+            setor: {
                 nome: null,
                 sigla: null,
                
@@ -99,7 +99,7 @@ export default {
         adicionarSetor(){
 
         setorService
-        .salvarSetor( this.nucleo)
+        .salvarSetor(this.setor)
         .then(() => { 
 
           console.log("entrou aqui")
