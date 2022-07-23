@@ -24,7 +24,6 @@ export const diretoriaService = {
       },
 
       listarDiretoria() {
-
         return new Promise((resolve, reject) => {
           axios.get(`http://sigepi.adalberto1538.c41.integrator.host/diretoria`)
           .then(ret => {

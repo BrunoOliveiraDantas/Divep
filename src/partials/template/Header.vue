@@ -26,9 +26,9 @@
                     <a class="nav-link nav-link--vacinacao" href="#">Vacinação</a>
                 </li>
 
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link nav-link--novo" @click="novoCadastro">Novo</a>
-                </li>
+                </li> -->
                 <b-dropdown text="Apoio">
                     <b-dropdown-item @click="diretoria">Diretoria</b-dropdown-item>
                     <b-dropdown-item @click="gerencia">Gerência</b-dropdown-item>
