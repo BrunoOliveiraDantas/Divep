@@ -3,16 +3,12 @@
     <div class="card">
       <form class="row g-2">
         <div class="row">
-          <div class=" col-md-4 ">
-            <label for="nome" class="form-label">Nome do Servidor</label>
-            <input type="text" class="form-control" id="nome" v-model.trim="usuario.nomeCivil">
+          <div class=" col-md-6 ">
+            <label for="nome" class="form-label" >Nome do Servidor</label>
+            <input type="text" class="form-control" required id="nome" v-model.trim="usuario.nomeCivil">
           </div>
-          <div class=" col-md-4 ">
-            <label for="apelido" class="form-label">Apelido</label>
-            <input type="text" class="form-control" id="apelido">
-          </div>
-          <div class="col-md-4 ">
-            <label for="nomSocial" class="form-label">Nome Social</label>
+          <div class="col-md-6 ">
+            <label for="nomSocial" class="form-label">Nome Social ou Apelido</label>
             <input type="text" class="form-control" id="nomSocial" v-model.trim="usuario.nomeSocial">
           </div>
         </div>
@@ -85,7 +81,8 @@
           <div class="col-md-4">
             <legend class="col-form-label col-sm pt-0">Pessoas com Deficiência</legend>
             <div class=" col-sm-2 form-check">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked v-model="usuario.tipoDeficiencia">
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked
+                v-model="usuario.tipoDeficiencia">
               <label class="form-check-label" for="gridRadios1">
                 Sim
               </label>
@@ -106,7 +103,8 @@
             <legend class="col-form-label col-sm pt-0">Tipo Sanguinéo</legend>
             <div class="col-sm-10">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked v-model="usuario.tipoSanguineo">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked
+                  v-model="usuario.tipoSanguineo">
                 <label class="form-check-label" for="gridRadios1">
                   A+
                 </label>
@@ -230,8 +228,14 @@
         </div>
 
         <div class="col-sm-12 mb-2 ">
-          <label for="ra">Foto de rosto</label>
-          <input type="text" class="form-control" id="ra" v-model="usuario.foto">
+          <!-- <label for="ra">Foto de rosto</label>
+          <input type="text" class="form-control" id="ra" v-model="usuario.foto"> -->
+          <form>
+  <div class="form-group">
+    <label for="exampleFormControlFile1">Exemplo de input de arquivo</label>
+    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+  </div>
+</form>
         </div>
 
         <div class="ccol-md-6">
@@ -250,47 +254,44 @@
 import { usuarioService } from "@/service/usuarioService";
 
 export default {
-  data (){
+  data() {
     return {
       usuario: {
-        cpf:"",
-        nomeCivil:"",
-        nomeSocial:"",
-        matricula:"",
-        emailPessoal:"",
-        identidade:"",
-        nascimento:"",
-        sexo:"",
-        genero:"",
-        escolaridade:"",
-        tipoDeficiencia:"",
-        tipoSanguineo:"",
-        foto:"",
-
-
+        cpf: "",
+        nomeCivil: "",
+        nomeSocial: "",
+        matricula: "",
+        emailPessoal: "",
+        identidade: "",
+        nascimento: "",
+        sexo: "",
+        genero: "",
+        escolaridade: "",
+        tipoDeficiencia: "",
+        tipoSanguineo: "",
+        foto: "",
       }
     }
   },
-  methods:{
-      adicionarUsuario() {       
-      
-       usuarioService
-        .salvarUsuario( this.usuario)
-        .then(() => { 
+  methods: {
+    adicionarUsuario() {
+      usuarioService
+        .salvarUsuario(this.usuario)
+        .then(() => {
 
           console.log("entrou aqui")
-        
+
           // apos salvar verificar qual tela ou serviço será chamado.
         })
-        .catch(() => {  
+        .catch(() => {
           console.log("entrou aqui no erro")
 
-                 
+
           // Aqui vai chamar a mensagem de erro          
         });
     },
-    
-  }
+  },
+
 }
 
 </script>

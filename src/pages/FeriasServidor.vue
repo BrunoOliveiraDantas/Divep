@@ -129,7 +129,7 @@ export default {
                 match[1]); // day
             return date;
         },
-        formatarObjetoData(d) {
+         formatarObjetoData(d) {
             if (!d) return d
             let data = new Date(d)
             if (!(data instanceof Date) || isNaN(data.valueOf()))
@@ -137,7 +137,6 @@ export default {
 
             return data.toLocaleDateString('pt-BR', { timeZone: "America/Sao_Paulo" })
         },
-
         addFerias() {
             let itemFerias = {};
             itemFerias.isActive = "true";
