@@ -34,8 +34,12 @@
                             <div role="group">
                                 <label for="input-live">Gerência:</label>
                                 <b-form-select class="mb-3 input-select">
-                                    <b-form-select-option value="C">Opção 1</b-form-select-option>
-                                    <b-form-select-option value="D">Opção 2</b-form-select-option>
+                                    <b-form-select-option id="selectGerencia" class="dropdown-gerencia"
+                                         v-for="gerencia in listaGerencia"
+                                        v-model="sigla" :key="gerencia.id" :value="gerencia.id">
+                                        {{ gerencia.sigla }}
+                                    </b-form-select-option>
+
                                 </b-form-select>
                             </div>
                         </div>
@@ -263,12 +267,19 @@
 <script>
 
 import { diretoriaService } from "@/service/diretoriaService";
+import { gerenciaService } from "@/service/gerenciaService";
+import { nucleoService } from "@/service/nucleoService";
+import { setorService } from "@/service/setorService";
 
 export default {
     data() {
         return {
             usuario: {},
+
             listaDiretoria: [],
+            listaGerencia: [],
+            listaNucleo: [],
+            listaSetor: [],
             /*            fieldsFerias: [
                            {
                                key: 'Exercicio',
@@ -304,6 +315,30 @@ export default {
                 .listarDiretoria().then((res) => {
                     this.listaDiretoria = res;
                     console.log("diretoria", this.listaDiretoria)
+                });
+        },
+        listarGerencia(idDiretoria) {
+
+            gerenciaService
+                .listarGerencia(idDiretoria).then((res) => {
+                    this.listaGerencia = res;
+                    console.log("gerencias da combo", this.listaGerencia)
+                });
+        },
+        listarNucleo() {
+
+            nucleoService
+                .listarNucleo().then((res) => {
+                    this.listaNucleo = res;
+                    console.log("nucleos", this.listarNucleo)
+                });
+        },
+        listarSetor() {
+
+            setorService
+                .listarSetor().then((res) => {
+                    this.listaSetor = res;
+                    console.log("setores", this.listarSetor)
                 });
         },
 
@@ -345,6 +380,9 @@ export default {
     },
     mounted() {
         this.listarDiretoria();
+        this.listarGerencia("2");
+       // this.listarNucleo();
+       // this.listarSetor();
         this.verificaLocalStore();
         this.usuario = JSON.parse(localStorage.getItem("usuario"));
         document.getElementById("#selectDiretoria").value = 1;
