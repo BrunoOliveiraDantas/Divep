@@ -35,8 +35,8 @@
                                 <label for="input-live">Gerência:</label>
                                 <b-form-select class="mb-3 input-select">
                                     <b-form-select-option id="selectGerencia" class="dropdown-gerencia"
-                                         v-for="gerencia in listaGerencia"
-                                        v-model="sigla" :key="gerencia.id" :value="gerencia.id">
+                                        v-for="gerencia in listaGerencia" v-model="sigla" :key="gerencia.id"
+                                        :value="gerencia.id">
                                         {{ gerencia.sigla }}
                                     </b-form-select-option>
 
@@ -109,11 +109,15 @@
                 <div class="col-lg-3">
 
                     <div class="container-buttons container-buttons--colunas">
-                        <button>Pesquisar</button>
-                        <button>
-                            <router-link to="/dadosPessoais">Dados Complementares</router-link>
-                        </button>
-                        <button>Salvar Dados</button>
+                        <b-button id="btn-pequisa-novo" @click="pesquisarRegistro" variant="outline-success">Novo
+                        </b-button>
+                        <b-button id="dadosComplementares" @click="dadosComplementares" variant="outline-success"> Dados
+                            Complementares
+                            <!-- <router-link to="/dadosPessoais">Dados Complementares</router-link> -->
+                        </b-button>
+                        <b-button id="btn-salvar-alterar" @click="alterarRegistro" variant="outline-success">Alterar
+                        </b-button>
+
                     </div>
                 </div>
             </div>
@@ -309,6 +313,31 @@ export default {
         }
     },
     methods: {
+
+        pesquisarRegistro() {
+            if (document.getElementById("btn-pequisa-novo").textContent == "Novo") {
+                document.getElementById("btn-pequisa-novo").textContent = "Pesquisar",
+                    this.usuario.vinculos[0].usuario.cpf = "",
+                    this.usuario.vinculos[0].matricula = "",
+                    this.usuario.nome = ""
+            } else {
+                document.getElementById("btn-pequisa-novo").textContent = "Novo"
+            }
+        },
+        alterarRegistro() {
+            if (document.getElementById("btn-salvar-alterar").textContent == "Alterar") {
+                document.getElementById("btn-salvar-alterar").textContent = "Salvar"
+
+            } else {
+                document.getElementById("btn-salvar-alterar").textContent = "Alterar"
+            }
+        },
+        dadosComplementares() {
+            this.$router.push({
+                path: "dadosPessoais",
+                params: { parametros: "" },
+            });
+        },
         listarDiretoria() {
 
             diretoriaService
@@ -381,8 +410,8 @@ export default {
     mounted() {
         this.listarDiretoria();
         this.listarGerencia("2");
-       // this.listarNucleo();
-       // this.listarSetor();
+        // this.listarNucleo();
+        // this.listarSetor();
         this.verificaLocalStore();
         this.usuario = JSON.parse(localStorage.getItem("usuario"));
         document.getElementById("#selectDiretoria").value = 1;

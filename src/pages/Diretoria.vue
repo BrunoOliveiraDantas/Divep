@@ -1,36 +1,48 @@
 <template>
+ 
     <div class="container">
 
         <div class="card">
             <h2 class="card__titulo"> Cadastro de Diretoria</h2>
+           
             <div class="row">
-                <div class="col-lg-9">                    
+                <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
+
+                    <p>{{ this.mensagem }}</p>
+                </b-alert>
+                <form class="row g-3 needs-validation" novalidate>
+                <div class="col-lg-9">
 
                     <div class="col-lg-6" role="group">
-                        <label for="input-live">Nome</label>
-                        <b-form-input id="input-live" type="text"
-                            aria-describedby="input-live-help input-live-feedback"
-                            placeholder="Informe o nome da Diretoria" trim v-model="diretoria.nome"></b-form-input>
+                        <label for="validationCustom03" class="form-label">Nome</label>
+                        <b-form-input  type="text" class="form-control" id="validationCustom03" :state="stateNome"  aria-describedby="input-live-help input-live-feedback"
+                            placeholder="Informe o nome da Diretoria" trim v-model="diretoria.nome" 
+                            v-on:change="validaCampoNome"></b-form-input>
+                            <div class="invalid-feedback">Campo nome é obrigatório!</div>
                     </div>
-                     <div class="col-lg-6" role="group">
+                    <div class="col-lg-6" role="group">
                         <label for="input-live">Sigla</label>
-                        <b-form-input id="input-live" type="text"
-                            aria-describedby="input-live-help input-live-feedback"
-                            placeholder="Informe a sigla da Diretoria" trim v-model="diretoria.sigla"></b-form-input>
+                        <b-form-input id="input-live" type="text" :state="stateSigla" aria-describedby="input-live-help input-live-feedback"
+                            placeholder="Informe a sigla da Diretoria" trim v-model="diretoria.sigla"
+                            v-on:change="validaCampoSigla"></b-form-input>
+                              <div class="invalid-feedback">Campo sigla é obrigatório!</div>
                     </div>
-                 
+
                 </div>
+                
 
                 <div class="col-lg-3">
 
                     <div class="container-buttons-salvar">
-                        <button @click="adicionarDiretoria">Salvar</button>
+                        <button @click="adicionarDiretoria" >Salvar</button>
                     </div>
                     <div class="container-buttons-salvar">
                         <router-link to="/administrativo"><button>Voltar</button></router-link>
                     </div>
                 </div>
+                </form>
             </div>
+            
         </div>
 
 
@@ -40,23 +52,16 @@
                 <div class="card">
                     <h2 class="card__titulo"> Listas das Diretorias</h2>
 
-                    <b-table striped hover :items="itemsDiretoria" :fields="fields"
-                    :current-page="currentPage"
-      :per-page="perPage"
-      :filter="filter"
-      :filter-included-fields="filterOn"
-      :sort-by.sync="sortBy"
-      :sort-desc.sync="sortDesc"
-      :sort-direction="sortDirection"
-      stacked="md"
-      show-empty
-      small
-      @filtered="onFiltered"></b-table>
+                    <b-table striped hover :items="itemsDiretoria" :fields="fields" :current-page="currentPage"
+                        :per-page="perPage" :filter="filter" :filter-included-fields="filterOn" :sort-by.sync="sortBy"
+                        :sort-desc.sync="sortDesc" :sort-direction="sortDirection" stacked="md" show-empty small
+                        @filtered="onFiltered"></b-table>
 
                 </div>
             </div>
         </div>
     </div>
+
 
 </template>
 
@@ -71,13 +76,17 @@ export default {
                 nome: null,
                 sigla: null,
             },
+            stateNome:false,
+            stateSigla:false,
             listaDiretorias: [],
-            
+            showDismissibleAlert: false,
+            mensagem: "",
+
             fields: [
-                 {
-                     key: 'Nome',
-                     sortable: false
-                 },
+                {
+                    key: 'Nome',
+                    sortable: false
+                },
                 {
                     key: 'Sigla',
                     sortable: false
@@ -90,17 +99,41 @@ export default {
                  } */
             ],
             itemsDiretoria: [
-               /*  { Sigla: "NVP", Nome:"Nuvep"},
-                { Sigla: "DCP", Nome:"Dicap"}, */
-               
+                /*  { Sigla: "NVP", Nome:"Nuvep"},
+                 { Sigla: "DCP", Nome:"Dicap"}, */
+
             ]
 
         }
     },
-       mounted() {
+    mounted() {
         this.listarDiretoria()
     },
     methods: {
+
+        validaCampoNome(){
+            
+        if(this.diretoria.nome){
+            this.stateNome = true;
+            
+        }else {
+            this.stateNome = false;           
+        }
+        return this.stateNome
+        
+            
+        },
+        validaCampoSigla(){
+           
+        if(this.diretoria.sigla){
+            this.stateSigla = true;
+            
+        }else {
+            this.stateSigla = false;
+           
+        }
+         return this.stateSigla
+        },
         toDDMMYYYY(strData) {
             let dt = strData.split("-");
             return dt[2] + "/" + dt[1] + "/" + dt[0];
@@ -128,42 +161,46 @@ export default {
                 this.items.push(itemAbono)
                 localStorage.setItem("abono", JSON.stringify(this.items));
             }, 900)
-            
-        },   
-        
-         adicionarDiretoria(){
+
+        },
+
+        adicionarDiretoria() {
+
+      
             diretoriaService
-        .salvarDiretoria( this.diretoria)
-        .then(() => { 
+                .salvarDiretoria(this.diretoria)
+                .then((res) => {
 
-          console.log("entrou aqui")
-        
-          // apos salvar verificar qual tela ou serviço será chamado.
-        })
-        .catch(() => {  
-          console.log("entrou aqui no erro")
+                    this.mensagem = res.data.mensagem,
 
-                 
-          // Aqui vai chamar a mensagem de erro          
-        });
-    },
+                        this.showDismissibleAlert = true
+                  /*   this.diretoria.nome = "",
+                        this.diretoria.sigla = "" */
+                })
+                .catch(() => {
+                    this.showDismissibleAlert = true
 
-     listarDiretoria() {
+
+                });
+         
+        },
+
+        listarDiretoria() {
             diretoriaService
                 .listarDiretoria().then((res) => {
-                   
+
                     this.listaDiretorias = res;
-                     console.log("diretorias teste", this.listaDiretoria) 
-                    let diretoria  = [{}]
-                    for (let index = 0; index < this.listaDiretorias.length; index ++){
+                    console.log("diretorias teste", this.listaDiretoria)
+                    let diretoria = [{}]
+                    for (let index = 0; index < this.listaDiretorias.length; index++) {
                         diretoria[index].Nome = this.listaDiretorias[index].nome;
                         diretoria[index].Sigla = this.listaDiretorias[index].sigla;
                         this.itemsDiretoria.push(diretoria[index])
-                    } 
-                                      
+                    }
+
                 });
         },
-     
+
 
     }
 }

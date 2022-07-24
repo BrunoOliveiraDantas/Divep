@@ -4,17 +4,26 @@
         <div class="card">
             <h2 class="card__titulo"> Cadastro de Gerência</h2>
             <div class="row">
+                <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
+
+                    <p>{{ this.mensagem }}</p>
+                </b-alert>
                 <div class="col-lg-9">
 
                     <div class="col-lg-6" role="group">
                         <label for="input-live">Nome</label>
-                        <b-form-input id="input-live" type="text" aria-describedby="input-live-help input-live-feedback"
-                            placeholder="Informe o nome da Gerência" trim v-model="gerencia.nome"></b-form-input>
+                        
+                        <b-form-input id="input-live" :state="stateNome" type="text" aria-describedby="input-live-help input-live-feedback"
+                            placeholder="Informe o nome da Gerência" trim v-model="gerencia.nome"
+                            v-on:change="validaCampoNome"></b-form-input>
+                            <div class="invalid-feedback">Campo nome é obrigatório!</div>
                     </div>
                     <div class="col-lg-6" role="group">
                         <label for="input-live">Sigla</label>
-                        <b-form-input id="input-live" type="text" aria-describedby="input-live-help input-live-feedback"
-                            placeholder="Informe a sigla da Gerência" trim v-model="gerencia.sigla"></b-form-input>
+                        <b-form-input id="input-live" :state="stateSigla" type="text" aria-describedby="input-live-help input-live-feedback"
+                            placeholder="Informe a sigla da Gerência" trim v-model="gerencia.sigla"
+                             v-on:change="validaCampoSigla"></b-form-input>
+                             <div class="invalid-feedback">Campo sigla é obrigatório!</div>
                     </div>
 
                     <div class="form-group">
@@ -68,9 +77,14 @@ export default {
             gerencia: {
                 nome: null,
                 sigla: null,
-                diretoria:"",
+                diretoria: "",
             },
             tipoDiretoria: [],
+            showDismissibleAlert: false,
+            mensagem: "",
+            usuario: [],
+            stateNome:false,
+            stateSigla:false,
             fields: [
                 {
                     key: 'Nome',
@@ -95,10 +109,38 @@ export default {
 
         }
     },
+    props: {
+        parametros: Object,
+    },
     mounted() {
         this.listarDiretoria()
+        this.usuario = JSON.parse(localStorage.getItem("usuario"));
     },
     methods: {
+
+        validaCampoNome(){
+            
+        if(this.gerencia.nome){
+            this.stateNome = true;
+            
+        }else {
+            this.stateNome = false;           
+        }
+        return this.stateNome
+        
+            
+        },
+        validaCampoSigla(){
+           
+        if(this.gerencia.sigla){
+            this.stateSigla = true;
+            
+        }else {
+            this.stateSigla = false;
+           
+        }
+         return this.stateSigla
+        },
         toDDMMYYYY(strData) {
             let dt = strData.split("-");
             return dt[2] + "/" + dt[1] + "/" + dt[0];
@@ -131,11 +173,12 @@ export default {
         adicionarGerencia() {
             gerenciaService
                 .salvarGerencia(this.gerencia)
-                .then(() => {
+                .then((res) => {
 
-                    console.log("entrou aqui")
-
-                    // apos salvar verificar qual tela ou serviço será chamado.
+                    this.mensagem = res.data.mensagem,
+                        this.showDismissibleAlert = true
+                    this.gerencia.nome = "",
+                        this.gerencia.sigla = ""
                 })
                 .catch(() => {
                     console.log("entrou aqui no erro")

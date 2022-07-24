@@ -4,22 +4,26 @@
         <div class="card">
             <h2 class="card__titulo"> Cadastro de Núcleo</h2>
             <div class="row">
-                <div class="col-lg-9">                    
+                <div class="col-lg-9">
 
                     <div class="col-lg-6" role="group">
                         <label for="input-live">Nome</label>
-                        <b-form-input id="input-live" type="text"
+                        <b-form-input id="input-live" :state="stateNome" type="text"
                             aria-describedby="input-live-help input-live-feedback"
-                            placeholder="Informe o nome do Núcleo" trim v-model="nucleo.nome"></b-form-input>
+                            placeholder="Informe o nome do Núcleo" trim v-model="nucleo.nome"
+                            v-on:change="validaCampoNome"></b-form-input>
+                        <div class="invalid-feedback">Campo nome é obrigatório!</div>
                     </div>
-                     <div class="col-lg-6" role="group">
+                    <div class="col-lg-6" role="group">
                         <label for="input-live">Sigla</label>
-                        <b-form-input id="input-live" type="text"
+                        <b-form-input id="input-live" :state="stateSigla" type="text"
                             aria-describedby="input-live-help input-live-feedback"
-                            placeholder="Informe a sigla do Núcleo" trim v-model="nucleo.sigla"></b-form-input>
+                            placeholder="Informe a sigla do Núcleo" trim v-model="nucleo.sigla"
+                            v-on:change="validaCampoSigla"></b-form-input>
+                        <div class="invalid-feedback">Campo sigla é obrigatório!</div>
                     </div>
 
-                     <div class="form-group">
+                    <div class="form-group">
                         <label for="diretoria">Gerência</label>
                         <select id="diretoria" class="form-control" v-model="nucleo.gerencia">
                             <option>Selecione</option>
@@ -28,7 +32,7 @@
                             </option>
                         </select>
                     </div>
-                 
+
                 </div>
 
                 <div class="col-lg-3">
@@ -70,14 +74,16 @@ export default {
             nucleo: {
                 nome: null,
                 sigla: null,
-                gerencia:"",
+                gerencia: "",
             },
-            tipoGerencia:[],
+            stateNome: false,
+            stateSigla: false,
+            tipoGerencia: [],
             fields: [
-                 {
-                     key: 'Nome',
-                     sortable: false
-                 },
+                {
+                    key: 'Nome',
+                    sortable: false
+                },
                 {
                     key: 'Sigla',
                     sortable: false
@@ -90,17 +96,41 @@ export default {
                  } */
             ],
             itemsNucleo: [
-                { Sigla: "TAG", Nome:"Taguatinga"},
-                { Sigla: "GMA", Nome:"Gama"},
-               
+                { Sigla: "TAG", Nome: "Taguatinga" },
+                { Sigla: "GMA", Nome: "Gama" },
+
             ]
 
         }
     },
-    mounted(){
+    mounted() {
         this.listarGerencia()
     },
     methods: {
+
+        validaCampoNome() {
+
+            if (this.nucleo.nome) {
+                this.stateNome = true;
+
+            } else {
+                this.stateNome = false;
+            }
+            return this.stateNome
+
+
+        },
+        validaCampoSigla() {
+
+            if (this.nucleo.sigla) {
+                this.stateSigla = true;
+
+            } else {
+                this.stateSigla = false;
+
+            }
+            return this.stateSigla
+        },
         toDDMMYYYY(strData) {
             let dt = strData.split("-");
             return dt[2] + "/" + dt[1] + "/" + dt[0];
@@ -128,28 +158,28 @@ export default {
                 this.items.push(itemAbono)
                 localStorage.setItem("abono", JSON.stringify(this.items));
             }, 900)
-            
-        },
-
-        adicionarNucleo(){
-
-        nucleoService
-        .salvarNucleo( this.nucleo)
-        .then(() => { 
-
-          console.log("entrou aqui")
-        
-          // apos salvar verificar qual tela ou serviço será chamado.
-        })
-        .catch(() => {  
-          console.log("entrou aqui no erro")
-
-                 
-          // Aqui vai chamar a mensagem de erro          
-        });
 
         },
-         listarGerencia() {
+
+        adicionarNucleo() {
+
+            nucleoService
+                .salvarNucleo(this.nucleo)
+                .then(() => {
+
+                    console.log("entrou aqui")
+
+                    // apos salvar verificar qual tela ou serviço será chamado.
+                })
+                .catch(() => {
+                    console.log("entrou aqui no erro")
+
+
+                    // Aqui vai chamar a mensagem de erro          
+                });
+
+        },
+        listarGerencia() {
             gerenciaService
                 .listarGerencia().then((res) => {
                     this.tipoGerencia = res.data;

@@ -1,21 +1,25 @@
 <template>
 
-  <div class="container-login col-md-12"> 
+  <div class="container-login col-md-12">
 
 
     <div class="card-login col-md-3 mt-5">
       <div class="row">
         <div class="col-12">
           <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-            <div>
-              <b-alert :show="dismissCountDown" dismissible variant="warning" @dismissed="dismissCountDown = 0"
+          <div>
+            <!-- <b-alert :show="dismissCountDown" dismissible variant="warning" @dismissed="dismissCountDown = 0"
                 @dismiss-count-down="countDownChanged">
                 <p>CPF ou senha inválidos!</p>
                 <b-progress variant="warning" :max="dismissSecs" :value="dismissCountDown" height="4px"></b-progress>
-              </b-alert>
+              </b-alert> -->
 
-            
-            </div>
+            <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
+              <p>CPF ou senha inválidos!</p>
+            </b-alert>
+
+
+          </div>
 
 
           <label for="inputEmail" class="sr-only">CPF</label>
@@ -40,7 +44,7 @@
         </div>
       </div>
     </div>
-    
+
   </div>
 
 </template>
@@ -86,7 +90,7 @@ export default {
       this.dismissCountDown = this.dismissSecs
     },
     validar() {
-      
+
       loginService.loginAcesso(this.cpf, this.senha).then((res) => {
         this.usuario = res;
         localStorage.setItem("usuario", JSON.stringify(this.usuario))
@@ -96,8 +100,9 @@ export default {
         console.log("USUARIO", this.usuario);
       }).catch((error) => {
         console.log(error),
-         // this.ountDownChanged(),
-          this.showAlert()
+          this.showDismissibleAlert = true
+        /* this.ountDownChanged(),
+         this.showAlert() */
         /*  var alerta = document.getElementById('alerta-mensagem');
                alerta.classList.toggle("Erro no Login", error); */
       }).finally(() => { });

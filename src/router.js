@@ -52,7 +52,8 @@ export default new VueRouter({
         },
         {
             path:'/gerencia',
-            component: Gerencia
+            component: Gerencia,
+            props:true
         },
         {
             path:'/nucleo',

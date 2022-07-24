@@ -55,6 +55,11 @@
 
 export default {
 
+    data() {
+        return {
+
+        }
+    },
     computed: {
         routes() {
             return this.$router.options.routes.filter(route => "meta" in route && "displayName" in route.meta)
@@ -87,6 +92,7 @@ export default {
             });
         },
         gerencia() {
+
             this.$router.push({
                 path: "gerencia",
                 params: { parametros: "" },

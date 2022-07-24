@@ -8,15 +8,19 @@
 
                     <div class="col-lg-6" role="group">
                         <label for="input-live">Nome</label>
-                        <b-form-input id="input-live" type="text"
+                        <b-form-input id="input-live" :state="stateNome" type="text"
                             aria-describedby="input-live-help input-live-feedback"
-                            placeholder="Informe o nome do Setor" trim v-model="setor.nome"></b-form-input>
+                            placeholder="Informe o nome do Setor" trim v-model="setor.nome"
+                            v-on:change="validaCampoNome"></b-form-input>
+                            <div class="invalid-feedback">Campo nome é obrigatório!</div>
                     </div>
                      <div class="col-lg-6" role="group">
                         <label for="input-live">Sigla</label>
-                        <b-form-input id="input-live" type="text"
+                        <b-form-input id="input-live" :state="stateSigla" type="text"
                             aria-describedby="input-live-help input-live-feedback"
-                            placeholder="Informe a sigla do Setor" trim v-model="setor.sigla"></b-form-input>
+                            placeholder="Informe a sigla do Setor" trim v-model="setor.sigla"
+                            v-on:change="validaCampoSigla"></b-form-input>
+                            <div class="invalid-feedback">Campo sigla é obrigatório!</div>
                     </div>
 
                  
@@ -65,6 +69,8 @@ export default {
                 sigla: null,
                
             },
+            stateSigla:false,
+            stateNome:false,
            
             fields: [
                  {
@@ -94,6 +100,30 @@ export default {
         
     },
     methods: {
+
+        validaCampoNome() {
+
+            if (this.setor.nome) {
+                this.stateNome = true;
+
+            } else {
+                this.stateNome = false;
+            }
+            return this.stateNome
+
+
+        },
+        validaCampoSigla() {
+
+            if (this.setor.sigla) {
+                this.stateSigla = true;
+
+            } else {
+                this.stateSigla = false;
+
+            }
+            return this.stateSigla
+        },
         
 
         adicionarSetor(){
