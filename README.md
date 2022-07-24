@@ -1,4 +1,4 @@
-# divep
+# sigepi-frontend
 
 ## Project setup
 ```

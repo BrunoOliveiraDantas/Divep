@@ -1,50 +1,53 @@
 <template>
- 
     <div class="container">
 
         <div class="card">
             <h2 class="card__titulo"> Cadastro de Diretoria</h2>
-           
+
             <div class="row">
                 <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
 
                     <p>{{ this.mensagem }}</p>
                 </b-alert>
                 <form class="row g-3 needs-validation" novalidate>
-                <div class="col-lg-9">
+                    <div class="col-lg-9">
 
-                    <div class="col-lg-6" role="group">
-                        <label for="validationCustom03" class="form-label">Nome</label>
-                        <b-form-input  type="text" class="form-control" id="validationCustom03" :state="stateNome"  aria-describedby="input-live-help input-live-feedback"
-                            placeholder="Informe o nome da Diretoria" trim v-model="diretoria.nome" 
-                            v-on:change="validaCampoNome"></b-form-input>
+                        <div class="col-lg-6" role="group">
+                            <label for="validationCustom03" class="form-label">Nome</label>
+                            <b-form-input type="text" class="form-control" id="validationCustom03" :state="stateNome"
+                                aria-describedby="input-live-help input-live-feedback"
+                                placeholder="Informe o nome da Diretoria" trim v-model="diretoria.nome"
+                                v-on:change="validaCampoNome"></b-form-input>
                             <div class="invalid-feedback">Campo nome é obrigatório!</div>
-                    </div>
-                    <div class="col-lg-6" role="group">
-                        <label for="input-live">Sigla</label>
-                        <b-form-input id="input-live" type="text" :state="stateSigla" aria-describedby="input-live-help input-live-feedback"
-                            placeholder="Informe a sigla da Diretoria" trim v-model="diretoria.sigla"
-                            v-on:change="validaCampoSigla"></b-form-input>
-                              <div class="invalid-feedback">Campo sigla é obrigatório!</div>
+                        </div>
+                        <div class="col-lg-6" role="group">
+                            <label for="input-live">Sigla</label>
+                            <b-form-input id="input-live" type="text" :state="stateSigla"
+                                aria-describedby="input-live-help input-live-feedback"
+                                placeholder="Informe a sigla da Diretoria" trim v-model="diretoria.sigla"
+                                v-on:change="validaCampoSigla"></b-form-input>
+                            <div class="invalid-feedback">Campo sigla é obrigatório!</div>
+                        </div>
+
                     </div>
 
-                </div>
-                
 
-                <div class="col-lg-3">
+                    <div class="col-lg-3">
 
-                    <div class="container-buttons-salvar">
-                        <b-button @click="adicionarDiretoria" variant="outline-success" >Salvar
-                        
-                        </b-button>
+                        <div class="container-buttons-salvar">
+                            <b-button @click="adicionarDiretoria" variant="outline-success">Salvar
+
+                            </b-button>
+                        </div>
+                        <div class="container-buttons-salvar">
+                            <router-link to="/inicio">
+                                <b-button variant="outline-success">Voltar</b-button>
+                            </router-link>
+                        </div>
                     </div>
-                    <div class="container-buttons-salvar">
-                        <router-link to="/inicio"><b-button variant="outline-success">Voltar</b-button></router-link>
-                    </div>
-                </div>
                 </form>
             </div>
-            
+
         </div>
 
 
@@ -78,8 +81,8 @@ export default {
                 nome: null,
                 sigla: null,
             },
-            stateNome:false,
-            stateSigla:false,
+            stateNome: false,
+            stateSigla: false,
             listaDiretorias: [],
             showDismissibleAlert: false,
             mensagem: "",
@@ -113,28 +116,28 @@ export default {
     },
     methods: {
 
-        validaCampoNome(){
-            
-        if(this.diretoria.nome){
-            this.stateNome = true;
-            
-        }else {
-            this.stateNome = false;           
-        }
-        return this.stateNome
-        
-            
+        validaCampoNome() {
+
+            if (this.diretoria.nome) {
+                this.stateNome = true;
+
+            } else {
+                this.stateNome = false;
+            }
+            return this.stateNome
+
+
         },
-        validaCampoSigla(){
-           
-        if(this.diretoria.sigla){
-            this.stateSigla = true;
-            
-        }else {
-            this.stateSigla = false;
-           
-        }
-         return this.stateSigla
+        validaCampoSigla() {
+
+            if (this.diretoria.sigla) {
+                this.stateSigla = true;
+
+            } else {
+                this.stateSigla = false;
+
+            }
+            return this.stateSigla
         },
         toDDMMYYYY(strData) {
             let dt = strData.split("-");
@@ -168,7 +171,7 @@ export default {
 
         adicionarDiretoria() {
 
-      
+
             diretoriaService
                 .salvarDiretoria(this.diretoria)
                 .then((res) => {
@@ -176,15 +179,15 @@ export default {
                     this.mensagem = res.data.mensagem,
 
                         this.showDismissibleAlert = true
-                  /*   this.diretoria.nome = "",
-                        this.diretoria.sigla = "" */
+                    /*   this.diretoria.nome = "",
+                          this.diretoria.sigla = "" */
                 })
                 .catch(() => {
                     this.showDismissibleAlert = true
 
 
                 });
-         
+
         },
 
         listarDiretoria() {
