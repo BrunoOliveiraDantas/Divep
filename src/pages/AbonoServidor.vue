@@ -54,10 +54,10 @@
                 <div class="col-lg-3">
 
                     <div class="container-buttons-salvar">
-                        <button @click="addAbono">Salvar</button>
+                        <b-button @click="addAbono" variant="outline-success">Salvar</b-button>
                     </div>
                     <div class="container-buttons-salvar">
-                        <router-link to="/inicio"><button>Voltar</button></router-link>
+                        <router-link to="/inicio"><b-button variant="outline-success">Voltar</b-button></router-link>
                     </div>
                 </div>
             </div>

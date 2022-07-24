@@ -4,7 +4,7 @@
       <form class="row g-2">
         <div class="row">
           <div class=" col-md-6 ">
-            <label for="nome" class="form-label" >Nome do Servidor</label>
+            <label for="nome" class="form-label">Nome do Servidor</label>
             <input type="text" class="form-control" required id="nome" v-model.trim="usuario.nomeCivil">
           </div>
           <div class="col-md-6 ">
@@ -231,15 +231,18 @@
           <!-- <label for="ra">Foto de rosto</label>
           <input type="text" class="form-control" id="ra" v-model="usuario.foto"> -->
           <form>
-  <div class="form-group">
-    <label for="exampleFormControlFile1">Exemplo de input de arquivo</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-  </div>
-</form>
+            <div class="form-group">
+              <label for="exampleFormControlFile1">Exemplo de input de arquivo</label>
+              <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+          </form>
         </div>
 
         <div class="ccol-md-6">
-          <button type="button" class="btn btn-primary mb-3" @click="adicionarUsuario">Salvar</button>
+          <b-button type="button" @click="adicionarUsuario" variant="outline-success">Salvar</b-button>
+          <router-link to="/inicio">
+            <b-button variant="outline-success">Voltar</b-button>
+          </router-link>
         </div>
 
       </form>

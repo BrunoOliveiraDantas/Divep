@@ -125,7 +125,7 @@
 
         <!-- Primeira parte -->
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                 <div class="card">
                     <h3 class="card__titulo">Férias</h3>
 
@@ -136,6 +136,7 @@
                                 <th>Exercício</th>
                                 <th>Período</th>
                                 <th>Dias</th>
+                                <th>Processo</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
@@ -144,9 +145,10 @@
                                 <td>{{ ferias.Exercicio }}</td>
                                 <td>{{ ferias.Período }}</td>
                                 <td>{{ ferias.Dias }}</td>
+                                 <td>124.524/2022</td>
                                 <td>
                                     <div>
-                                        <button type="button">Ação</button>
+                                        <b-button type="button" variant="outline-success">Ação</b-button>
                                     </div>
                                 </td>
                             </tr>
@@ -156,12 +158,12 @@
                     </table>
 
                     <div class="container-buttons">
-                        <button type="button" @click="incluirFeriasServidor">Incluir</button>
+                        <b-button type="button" @click="incluirFeriasServidor" variant="outline-success">Incluir</b-button>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <div class="card">
                     <h3 class="card__titulo">Abonos</h3>
 
@@ -182,7 +184,7 @@
                     </table>
 
                     <div class="container-buttons">
-                        <button type="button" @click="incluirAbonoServidor">Incluir</button>
+                        <b-button type="button" @click="incluirAbonoServidor" variant="outline-success">Incluir</b-button>
                     </div>
                 </div>
             </div>
@@ -210,7 +212,7 @@
                     </table>
 
                     <div class="container-buttons">
-                        <button>Incluir</button>
+                        <b-button variant="outline-success">Incluir</b-button>
                     </div>
                 </div>
             </div>
@@ -225,37 +227,31 @@
                         <thead>
                             <tr>
                                 <th>Nº</th>
-                                <th>Matrícula</th>
+                                <th>CPF</th>
                                 <th>Nome do Servidor</th>
-                                <th>Setor</th>
-                                <th>Lotação</th>
-                                <th>Atividade</th>
+                                <th>Próximo Afastamento</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td>23567</td>
+                                <td>854.145.879-72</td>
                                 <td>Bruno Gorge</td>
-                                <td>Divep</td>
-                                <td>Brasília</td>
-                                <td>Desenvolvedor</td>
+                                <td>01/04/2022</td>
+                                
                             </tr>
                             <tr>
                                 <td>2</td>
-                                <td>97812</td>
+                                <td>857.987.741-82</td>
                                 <td>Carlos Eduardo</td>
-                                <td>Divep</td>
-                                <td>Brasília</td>
-                                <td>Desenvolvedor</td>
+                               <td>06/04/2022</td>
                             </tr>
                             <tr>
                                 <td>3</td>
-                                <td>75758</td>
+                                <td>651.894.362-21</td>
                                 <td>Adalberto Junior</td>
-                                <td>Divel</td>
-                                <td>Brasília</td>
-                                <td>Desenvolvedor</td>
+                                <td>10/04/2022</td>
                             </tr>
 
 

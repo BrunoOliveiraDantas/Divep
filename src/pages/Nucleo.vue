@@ -38,10 +38,10 @@
                 <div class="col-lg-3">
 
                     <div class="container-buttons-salvar">
-                        <button @click="adicionarNucleo">Salvar</button>
+                        <b-button @click="adicionarNucleo" variant="outline-success">Salvar</b-button>
                     </div>
                     <div class="container-buttons-salvar">
-                        <router-link to="/administrativo"><button>Voltar</button></router-link>
+                        <router-link to="/inicio"><b-button variant="outline-success">Voltar</b-button></router-link>
                     </div>
                 </div>
             </div>
