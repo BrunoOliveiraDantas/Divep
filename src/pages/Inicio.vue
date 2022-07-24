@@ -2,6 +2,16 @@
     <div class="container">
         <!-- Formulários de entrada-->
         <div class="card">
+             <div class="col-lg-3">
+                            <div role="group">
+                                <label for="input-live">Vínculo:</label>
+                                <b-form-select class="mb-3 input-select">
+                                    <b-form-select-option value="C">Vínculo 1</b-form-select-option>
+                                    <b-form-select-option value="D">Vínculo 2</b-form-select-option>
+                                </b-form-select>
+                            </div>
+
+                        </div>
             <div class="row">
                 <div class="col-lg-9">
                     <div class="row">
